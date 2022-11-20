@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Welcome</title>
+</head>
+<style>
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+@media only screen and (min-width: 1024px){
+/* LOGIN PAGE */
+
+:root {
+  --baseColor: #606468;
+}
+.card_login{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 30%;
+    height: 65%;
+    border-radius: 15px;
+  }
+.card_forget{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 25%;
+    height: 50%;
+    border-radius: 15px;
+}
+/* WELCOME PAGE */
+.welcomepage {
+    background-color: #2d1f53;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+.welcomepage h1{
+    font-size: 50px;
+}
+.welcomepage p{
+    font-size: 20px;
+}
+.welcomepage button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    background:#9777e6 ;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+.welcomepage button:hover,.welcomepage button:active,.welcomepage button:focus {
+    background: #9777e6;
+  }
+#namer {
+ position: relative;
+}
+#namer input {
+ border-bottom: 2px solid white;
+ font-size: 30px;
+ height: 70px;
+ text-align: center;
+ background: transparent;
+ color: white;
+}
+#namer input:focus {
+    outline: 0;
+    color: white;
+   }
+
+#namer input::placeholder {
+ color: whitesmoke;
+ opacity: 50%;
+ font-size: 15px;
+}
+
+/* helpers/align.css */
+
+.align {
+  display: grid;
+  place-items: center;
+}
+
+.grid {
+  inline-size: 70%;
+  padding-top: 55px;
+  margin-inline: auto;
+  max-inline-size: 20rem;
+}
+
+/* helpers/hidden.css */
+
+.hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+/* helpers/icon.css */
+
+:root {
+  --iconFill: var(--baseColor);
+}
+
+.icons {
+  display: none;
+}
+
+.icon {
+  block-size: 1em;
+  display: inline-block;
+  fill: var(--iconFill);
+  inline-size: 1em;
+  vertical-align: middle;
+}
+
+/* layout/base.css */
+
+:root {
+  --htmlFontSize: 100%;
+
+  --bodyBackgroundColor: white ;
+  --bodyColor: var(--baseColor);
+  --bodyFontFamily: "Open Sans";
+  --bodyFontFamilyFallback: sans-serif;
+  --bodyFontSize: 0.875rem;
+  --bodyFontWeight: 400;
+  --bodyLineHeight: 1.5;
+}
+
+
+html {
+  box-sizing: border-box;
+  font-size: var(--htmlFontSize);
+}
+
+body {
+  background-color: var(--bodyBackgroundColor);
+  color: var(--bodyColor);
+  font-family: var(--bodyFontFamily), var(--bodyFontFamilyFallback);
+  font-size: var(--bodyFontSize);
+  font-weight: var(--bodyFontWeight);
+  line-height: var(--bodyLineHeight);
+  margin: 0;
+  min-block-size: 100vh;
+}
+
+/* modules/anchor.css */
+
+:root {
+  --anchorColor: #eee;
+}
+
+a {
+  color: var(--anchorColor);
+  outline: 0;
+  text-decoration: none;
+}
+
+a:focus,
+a:hover {
+  text-decoration: underline;
+}
+
+/* modules/form.css */
+
+:root {
+  --formGap: 0.875rem;
+}
+
+input {
+  background-image: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+}
+
+.form {
+  display: grid;
+  gap: var(--formGap);
+}
+
+.form input[type="password"],
+.form input[type="text"],
+.form input[type="submit"] {
+  inline-size: 100%;
+}
+
+.form__field {
+  display: flex;
+}
+
+.form__input {
+  flex: 1;
+}
+
+/* modules/login.css */
+
+:root {
+  --loginBorderRadus: 0.25rem;
+  --loginColor: black;
+
+  --loginInputBackgroundColor: #f1f1f9 ;
+  --loginInputHoverBackgroundColor: #e5e4f4 ;
+
+  --loginLabelBackgroundColor: #f1f1f9;
+
+  --loginSubmitBackgroundColor: #9777e6 ;
+  --loginSubmitColor: #eee;
+  --loginSubmitHoverBackgroundColor:#9474e4 ;
+}
+
+.login {
+  color: var(--loginColor);
+}
+
+.login label,
+.login input[type="text"],
+.login input[type="password"],
+.login input[type="submit"] {
+  border-radius: var(--loginBorderRadus);
+  padding: 1rem;
+}
+
+.login label {
+  background-color: var(--loginLabelBackgroundColor);
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  padding-inline: 1.25rem;
+}
+
+.login input[type="password"],
+.login input[type="text"] {
+  background-color: var(--loginInputBackgroundColor);
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.login input[type="password"]:focus,
+.login input[type="password"]:hover,
+.login input[type="text"]:focus,
+.login input[type="text"]:hover {
+  background-color: var(--loginInputHoverBackgroundColor);
+}
+
+.login input[type="submit"] {
+  background-color: var(--loginSubmitBackgroundColor);
+  color: var(--loginSubmitColor);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.login input[type="submit"]:focus,
+.login input[type="submit"]:hover {
+  background-color: var(--loginSubmitHoverBackgroundColor);
+}
+
+/* modules/text.css */
+
+p {
+  margin-block: 1.5rem;
+}
+
+.grid h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: black;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: bold;
+  }
+.text--center {
+  text-align: center;
+}
+
+
+}
+
+@media only screen and (max-width: 1023px){
+    :root {
+      --baseColor: #606468;
+    }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 30%;
+        height: 60%;
+      }
+    /* helpers/align.css */
+
+    .align {
+      display: grid;
+      place-items: center;
+    }
+
+    .grid {
+      inline-size: 70%;
+      padding-top: 55px;
+      margin-inline: auto;
+      max-inline-size: 20rem;
+    }
+
+    /* helpers/hidden.css */
+
+    .hidden {
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+
+    /* helpers/icon.css */
+
+    :root {
+      --iconFill: var(--baseColor);
+    }
+
+    .icons {
+      display: none;
+    }
+
+    .icon {
+      block-size: 1em;
+      display: inline-block;
+      fill: var(--iconFill);
+      inline-size: 1em;
+      vertical-align: middle;
+    }
+
+    /* layout/base.css */
+
+    :root {
+      --htmlFontSize: 100%;
+
+      --bodyBackgroundColor: white ;
+      --bodyColor: var(--baseColor);
+      --bodyFontFamily: "Open Sans";
+      --bodyFontFamilyFallback: sans-serif;
+      --bodyFontSize: 0.875rem;
+      --bodyFontWeight: 400;
+      --bodyLineHeight: 1.5;
+    }
+
+    * {
+      box-sizing: inherit;
+    }
+
+    html {
+      box-sizing: border-box;
+      font-size: var(--htmlFontSize);
+    }
+
+    body {
+      background-color: var(--bodyBackgroundColor);
+      color: var(--bodyColor);
+      font-family: var(--bodyFontFamily), var(--bodyFontFamilyFallback);
+      font-size: var(--bodyFontSize);
+      font-weight: var(--bodyFontWeight);
+      line-height: var(--bodyLineHeight);
+      margin: 0;
+      min-block-size: 100vh;
+    }
+
+    /* modules/anchor.css */
+
+    :root {
+      --anchorColor: #eee;
+    }
+
+    a {
+      color: var(--anchorColor);
+      outline: 0;
+      text-decoration: none;
+    }
+
+    a:focus,
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* modules/form.css */
+
+    :root {
+      --formGap: 0.875rem;
+    }
+
+    input {
+      background-image: none;
+      border: 0;
+      color: inherit;
+      font: inherit;
+      margin: 0;
+      outline: 0;
+      padding: 0;
+      transition: background-color 0.3s;
+    }
+
+    input[type="submit"] {
+      cursor: pointer;
+    }
+
+    .form {
+      display: grid;
+      gap: var(--formGap);
+    }
+
+    .form input[type="password"],
+    .form input[type="text"],
+    .form input[type="submit"] {
+      inline-size: 100%;
+    }
+
+    .form__field {
+      display: flex;
+    }
+
+    .form__input {
+      flex: 1;
+    }
+
+    /* modules/login.css */
+
+    :root {
+      --loginBorderRadus: 0.25rem;
+
+      --loginInputBackgroundColor: #f1f1f9 ;
+      --loginInputHoverBackgroundColor: #e5e4f4 ;
+
+      --loginLabelBackgroundColor: #f1f1f9;
+
+      --loginSubmitBackgroundColor: #9777e6 ;
+      --loginSubmitColor: #eee;
+      --loginSubmitHoverBackgroundColor: #d44179;
+    }
+
+    .login {
+      color: var(--loginColor);
+    }
+
+    .login label,
+    .login input[type="text"],
+    .login input[type="password"],
+    .login input[type="submit"] {
+      border-radius: var(--loginBorderRadus);
+      padding: 1rem;
+    }
+
+    .login label {
+      background-color: var(--loginLabelBackgroundColor);
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      padding-inline: 1.25rem;
+    }
+
+    .login input[type="password"],
+    .login input[type="text"] {
+      background-color: var(--loginInputBackgroundColor);
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+    }
+
+    .login input[type="password"]:focus,
+    .login input[type="password"]:hover,
+    .login input[type="text"]:focus,
+    .login input[type="text"]:hover {
+      background-color: var(--loginInputHoverBackgroundColor);
+    }
+
+    .login input[type="submit"] {
+      background-color: var(--loginSubmitBackgroundColor);
+      color: var(--loginSubmitColor);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .login input[type="submit"]:focus,
+    .login input[type="submit"]:hover {
+      background-color: var(--loginSubmitHoverBackgroundColor);
+    }
+
+    /* modules/text.css */
+
+    p {
+      margin-block: 1.5rem;
+    }
+    .grid h2 {
+        margin: 0 0 30px;
+        padding: 0;
+        color: black;
+        text-align: center;
+        font-family: sans-serif;
+        font-weight: bold;
+      }
+    .text--center {
+      text-align: center;
+    }
+    }
+
+
+@media only screen and (max-width: 768px){
+    :root {
+      --baseColor: #606468;
+    }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 30%;
+        height: 60%;
+      }
+    /* helpers/align.css */
+
+    .align {
+      display: grid;
+      place-items: center;
+    }
+
+    .grid {
+      inline-size: 70%;
+      padding-top: 55px;
+      margin-inline: auto;
+      max-inline-size: 20rem;
+    }
+
+    /* helpers/hidden.css */
+
+    .hidden {
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+
+    /* helpers/icon.css */
+
+    :root {
+      --iconFill: var(--baseColor);
+    }
+
+    .icons {
+      display: none;
+    }
+
+    .icon {
+      block-size: 1em;
+      display: inline-block;
+      fill: var(--iconFill);
+      inline-size: 1em;
+      vertical-align: middle;
+    }
+
+    /* layout/base.css */
+
+    :root {
+      --htmlFontSize: 100%;
+
+      --bodyBackgroundColor: white ;
+      --bodyColor: var(--baseColor);
+      --bodyFontFamily: "Open Sans";
+      --bodyFontFamilyFallback: sans-serif;
+      --bodyFontSize: 0.875rem;
+      --bodyFontWeight: 400;
+      --bodyLineHeight: 1.5;
+    }
+
+    * {
+      box-sizing: inherit;
+    }
+
+    html {
+      box-sizing: border-box;
+      font-size: var(--htmlFontSize);
+    }
+
+    body {
+      background-color: var(--bodyBackgroundColor);
+      color: var(--bodyColor);
+      font-family: var(--bodyFontFamily), var(--bodyFontFamilyFallback);
+      font-size: var(--bodyFontSize);
+      font-weight: var(--bodyFontWeight);
+      line-height: var(--bodyLineHeight);
+      margin: 0;
+      min-block-size: 100vh;
+    }
+
+    /* modules/anchor.css */
+
+    :root {
+      --anchorColor: #eee;
+    }
+
+    a {
+      color: var(--anchorColor);
+      outline: 0;
+      text-decoration: none;
+    }
+
+    a:focus,
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* modules/form.css */
+
+    :root {
+      --formGap: 0.875rem;
+    }
+
+    input {
+      background-image: none;
+      border: 0;
+      color: inherit;
+      font: inherit;
+      margin: 0;
+      outline: 0;
+      padding: 0;
+      transition: background-color 0.3s;
+    }
+
+    input[type="submit"] {
+      cursor: pointer;
+    }
+
+    .form {
+      display: grid;
+      gap: var(--formGap);
+    }
+
+    .form input[type="password"],
+    .form input[type="text"],
+    .form input[type="submit"] {
+      inline-size: 100%;
+    }
+
+    .form__field {
+      display: flex;
+    }
+
+    .form__input {
+      flex: 1;
+    }
+
+    /* modules/login.css */
+
+    :root {
+      --loginBorderRadus: 0.25rem;
+
+      --loginInputBackgroundColor: #f1f1f9 ;
+      --loginInputHoverBackgroundColor: #e5e4f4 ;
+
+      --loginLabelBackgroundColor: #f1f1f9;
+
+      --loginSubmitBackgroundColor: #9777e6 ;
+      --loginSubmitColor: #eee;
+      --loginSubmitHoverBackgroundColor: #d44179;
+    }
+
+    .login {
+      color: var(--loginColor);
+    }
+
+    .login label,
+    .login input[type="text"],
+    .login input[type="password"],
+    .login input[type="submit"] {
+      border-radius: var(--loginBorderRadus);
+      padding: 1rem;
+    }
+
+    .login label {
+      background-color: var(--loginLabelBackgroundColor);
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      padding-inline: 1.25rem;
+    }
+
+    .login input[type="password"],
+    .login input[type="text"] {
+      background-color: var(--loginInputBackgroundColor);
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+    }
+
+    .login input[type="password"]:focus,
+    .login input[type="password"]:hover,
+    .login input[type="text"]:focus,
+    .login input[type="text"]:hover {
+      background-color: var(--loginInputHoverBackgroundColor);
+    }
+
+    .login input[type="submit"] {
+      background-color: var(--loginSubmitBackgroundColor);
+      color: var(--loginSubmitColor);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .login input[type="submit"]:focus,
+    .login input[type="submit"]:hover {
+      background-color: var(--loginSubmitHoverBackgroundColor);
+    }
+
+    /* modules/text.css */
+
+    p {
+      margin-block: 1.5rem;
+    }
+    .grid h2 {
+        margin: 0 0 30px;
+        padding: 0;
+        color: black;
+        text-align: center;
+        font-family: sans-serif;
+        font-weight: bold;
+      }
+    .text--center {
+      text-align: center;
+    }
+    }
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-white bg-white border-bottom ">
+      <div class="container-fluid px-5">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand mx-5" href="#">
+          <img src="https://github.com/nesbahDev/Frontend/blob/main/images/Final%20files-nesbah.png?raw=true" width="107px">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-dark">
+            <li class="nav-item">
+              <a class="nav-link active text-dark" aria-current="page" href="role_management.html"><i class="fa fa-thin fa-house"></i></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Products
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Fixed Deposit</a></li>
+                <li><a class="dropdown-item" href="#">Credit Card</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="why_us.html">Why Us ?</a>
+            </li>
+          </ul>
+            <a class="btn btn-outline-primary shadow px-3" href="{% url 'login' %}" class="ml-2">Sign In</a>
+        </div>
+      </div>
+    </nav>
+    <div class="welcomepage">
+        <h1>Welcome to Nisbah</h1>
+        <p>Connecting companies to all banks within the kingfom of Saudi Arabia in one click
+        </p>
+            <div id="namer">
+            <div id="namer-input">
+                 <input type="text" name="namername" placeholder="Enter your company name">
+            </div>   
+            </div>
+        <p style="padding-top: 80px ; font-size: 15px;"><a href=""> How it works? </a></p>
+        <button>Apply Now</button>
+   </div>
+</body>
+</html>
