@@ -780,7 +780,7 @@ p {
               <a class="nav-link text-dark" href="why_us.html">Why Us ?</a>
             </li>
           </ul>
-            <a class="btn btn-outline-primary shadow px-3" href="{% url 'login' %}" class="ml-2">Sign In</a>
+            <a class="btn btn-outline-primary shadow px-3" href="{% url 'login' %}" class="ml-2">{{ name }}</a>
         </div>
       </div>
     </nav>
@@ -790,11 +790,11 @@ p {
         </p>
             <div id="namer">
             <div id="namer-input">
-                 <input type="text" name="namername" placeholder="Enter your company name">
+                 <input type="text" name="namername" placeholder="Enter your company name" value="{{ name_input }}">
             </div>   
             </div>
         <p style="padding-top: 80px ; font-size: 15px;"><a href=""> How it works? </a></p>
-        <button>Apply Now</button>
+        <a href="{% url 'employee' %}">Apply Now</a>
    </div>
 </body>
 </html>

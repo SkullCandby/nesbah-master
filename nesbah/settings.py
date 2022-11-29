@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import mimetypes
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-m5rt%9s)9*nl%2co#34flw&g^r4t0u3-3=y9q^y&_xpk!@vx1q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nesbah-site.azurewebsites.net', '127.0.0.1']
 
 
 # Application definition
@@ -80,9 +81,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': '4D9CO8gaqXEcIlJsde3i',
-        'HOST': 'containers-us-west-132.railway.app',
-        'PORT': '6193',
+        'PASSWORD': '5uGLS4p0VFzUHl4sxvru',
+        'HOST': 'containers-us-west-25.railway.app',
+        'PORT': '6332',
     }
 }
 
@@ -119,16 +120,22 @@ USE_TZ = True
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'gdmeshkov@gmail.com'
-EMAIL_HOST_PASSWORD = 'rseqbummjkbwoawr'
+EMAIL_HOST_PASSWORD = 'wbxuhmofubtwagjt'
 EMAIL_PORT = 587
-
+ENABLE_ORYX_BUILD = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-STATIC_URL = 'static/'
-
+STATICFILES_FINDERS = (
+'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+'django.contrib.staticfiles.finders.FileSystemFinder',
+)
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, '../static')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+mimetypes.add_type("text/javascript", ".js", True)
+mimetypes.add_type("text/css", ".css", True)
