@@ -16,7 +16,8 @@ from django.contrib import messages
 from .tokens import account_activation_token
 from django.contrib.auth.decorators import login_required
 # Create your views here.
-
+from datetime import datetime, timedelta
+from kinda_api import past_week_users, past_week_employee
 def index(request):
     context = {}
     user = request.user
@@ -91,9 +92,14 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
+        customer = Customer(user=user)
+        customer.email = user.email
+        customer.name = user.first_name
+        customer.save()
         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
         return HttpResponse('Activation link is invalid!')
+
 
 
 def employee(request):
@@ -104,7 +110,9 @@ def employee(request):
         form = EmployeeForm(request.POST)
         print(form.is_valid())
         if form.is_valid():
-            obj = form.save(commit=False)
-            obj.user_id = request.user.id
-            obj.save()
+            form.save()
+
+    else:
+        print(past_week_users(Customer))
+        print(past_week_employee(Employee))
     return render(request, 'homepage_2.html', context)

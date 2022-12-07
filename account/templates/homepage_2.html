@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="images/favicon.png" rel="icon">
+    <title>Nisbah | Welcome</title>
+</head>
+<style>
+body{
+    background-color:  #2d1f53;
+    height: 170vh;
+}
+.container{
+    margin-top: 40px;
+}
+
+.card{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 15px;
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: column; 
+}
+.form-select {
+    background-image: none;
+    border: none;
+}
+.form-control {
+    border: none;
+}
+
+</style>
+<body>
+  <!--NAVBAR-->
+     <nav class="navbar navbar-expand-lg navbar-white bg-white border-bottom ">
+      <div class="container-fluid px-5">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand mx-5" href="#">
+          <img src="https://github.com/nesbahDev/Frontend/blob/main/images/Final%20files-nesbah.png?raw=true" width="107px">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-dark">
+            <li class="nav-item">
+              <a class="nav-link active text-dark" aria-current="page" href="role_management.html"><i class="fa fa-thin fa-house"></i></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Products
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Fixed Deposit</a></li>
+                <li><a class="dropdown-item" href="#">Credit Card</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="why_us.html">Why Us ?</a>
+            </li>
+          </ul>
+            <a class="btn btn-outline-primary shadow px-3" href="{% url 'login' %}" class="ml-2">Sign In</a>
+        </div>
+      </div>
+    </nav>
+    <!-- CARD APPLICATION-->
+    <form method="post" action="">
+        {% csrf_token %}
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    Contact Details
+                </div>
+                <div class="card-body">
+                    <span class="row g-3">
+                        <div class="col-6">
+                          <label for="inputcp" class="form-label">Contact Person</label>
+                          <span  class="form-control" id="inputcp">{{ form.contact_person }}</span>
+                        </div>
+                        <div class="col-6">
+                            <label for="inputnumber" class="form-label">Mobile Number</label>
+                            <span type="text" class="form-control" id="inputnumber" > {{ form.mobile}}</span>
+                          </div>
+                          <div class="col-6">
+                            <label for="inputposition" class="form-label">Position</label>
+                              <span type="text" class="form-control" id="inputposition" > {{ form.position }} </span>
+                          </div>
+                          <div class="col-6">
+                              <label for="inputEmail4" class="form-label">Email</label>
+                              <span type="email" class="form-control" id="inputEmail4" > {{ form.email }} </span>
+                            </div>
+                      </span>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        Corporate Information
+                    </div>
+                    <div class="card-body">
+                            <div class="col-6">
+                              <label class="form-label">Region(s) of operation</label>
+                              <span class="form-select" aria-label="Default select example">
+                                {{ form.regions }}
+                              </span>
+                            </div>
+                            <div class="col-6">
+                                <label for="inputservice" class="form-label">Required service from bank </label>
+                                <span class="form-select" aria-label="Default select example">
+                                    {{ form.req_service }}
+                                  </span>
+                              </div>
+                              <div class="col-6">
+                                  <label class="form-label">Year(s) of business</label>
+                                  {{ form.years }}
+                              </div>
+                              <div class="col-6">
+                                <label class="form-label">Sector</label>
+                                <span class="form-select" aria-label="Default select example">
+                                    {{ form.sector }}
+                                  </span>
+                              </div>
+                              <div class="col-6">
+                                <label class="form-label">Number of staff</label>
+                                <span class="form-select" aria-label="Default select example">
+                                    <span class="form-select" aria-label="Default select example">
+                                        {{ form.number_of_stuff }}
+                                    </span>
+                                </span>
+                              </div>
+                              <div class="col-6">
+                                  <label class="form-label">No. Of Saudi Staff</label>
+                                  <span>
+                                    {{ form.saudi_stuff }}
+                                  </span>
+                              </div>
+                              <div class="col-6">
+                                <label class="form-label">Average staff salary</label>
+                                  {{ form.avg_salary }}
+                              </div>
+                              <div class="col-6">
+                                <label for="inputbusiness" class="form-label">Business legal form</label>
+                                  <span class="form-select" aria-label="Default select example">
+                                    {{ form.legal_form }}
+                                </span>
+                              </div>
+                              <div class="col-6">
+                                <label for="inputbusinesscapital" class="form-label">Business Capital</label>
+                                  <span class="form-select" aria-label="Default select example">
+                                    {{ form.business_cap }}
+                                </span>
+                              </div>
+                              <div class="col-6">
+                                <label for="inputbranches" class="form-label">Number of Branches</label>
+                                  <span type="text" class="form-control" id="inputbranches"> {{ form.number_of_branches }} </span>
+                              </div>
+                              <div class="col-12">
+                                <label for="inputwebsite" class="form-label">Website</label>
+                                <span type="text" class="form-control" id="inputwebsite"> {{ form.website }} </span>
+                              </div>
+                              <div class="col-12">
+                                  <label for="inputnotes" class="form-label" style="border-color: white">Notes</label>
+                                  <span type="text" class="form-control" id="inputnotes"> {{ form.notes }} </span>
+                              </div>
+                              <div class="d-grid gap-2 col-6 mx-auto">
+                              <input type="submit" class="btn btn-primary btn-md" style="background-color: #9777e6 ;" value="Submit Application">
+                              </div>
+                    </div>
+                  </div>
+                </div>
+    </form>
+</body>
+</html>
