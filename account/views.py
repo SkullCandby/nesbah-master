@@ -116,3 +116,17 @@ def employee(request):
         print(past_week_users(Customer))
         print(past_week_employee(Employee))
     return render(request, 'homepage_2.html', context)
+
+
+def deposit(request):
+    context = {}
+    return render(request, 'fixed_deposit.html', context)
+
+
+def whyUs(request):
+    context = {}
+    return render(request, 'why_us.html', context)
+
+def credit(request):
+    context = {}
+    return render(request, 'credit_card.html', context)

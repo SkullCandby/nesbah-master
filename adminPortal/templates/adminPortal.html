@@ -5,12 +5,15 @@
   {% load static %}
   <!-- Required meta tags -->
   <meta charset="utf-8">
+  <meta id="my-data" data-users="{{users}}" data-leads="{{leads}}">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Nisbah Admin</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
   <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themifyIcons.css' %}">
   <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
   <!-- endinject -->
   <!-- Plugin css for this page -->
   <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themifyIcons.css' %}">
@@ -24,6 +27,13 @@
   <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
 </head>
 <body>
+  <!-- here you get all data -->
+<script>
+  var users = $('#my-data').data().users;
+  var leads = $('#my-data').data().leads;
+  console.log(users);
+  console.log(leads);
+</script>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
