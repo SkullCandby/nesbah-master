@@ -6,7 +6,7 @@
         labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
         datasets: [
           {
-            data: [0.3, 0.1, 0.7, 0.6, 0.68, 0.35, 0.38],
+            data: [0, 0, 0, 0, 0, 0, 0],
             borderColor: [
               '#D43F8D'
             ],
@@ -16,6 +16,32 @@
           }
         ]
       };
+
+      let leadsList = JSON.parse($('#my-data').data().leads.replace(/'/g, '"'));
+      let maxLeadsList = 1;
+      let minLeadsList = 0;
+      
+      // loop through week days, if there is data available for that day, set it to the value
+      for (let i = 0; i < areaData.labels.length; i++) {
+        let weekDay = areaData.labels[i];
+
+        if (leadsList[weekDay] != undefined) {
+          areaData.datasets[0].data[i] = leadsList[weekDay];
+
+          if (leadsList[weekDay] > maxLeadsList) {
+            maxLeadsList = leadsList[weekDay];
+          } 
+        }
+      }
+
+      let leadsStepSize = maxLeadsList;
+      // get the highest divisor of the maximum users value
+      for (let i = maxLeadsList-1; i > 0; i--) {
+        if (maxLeadsList % i == 0) {
+          leadsStepSize = i;
+        }
+      }
+
       var areaOptions = {
         responsive: true,
         maintainAspectRatio: true,
@@ -45,9 +71,9 @@
               display: true,
               autoSkip: false,
               maxRotation: 0,
-              stepSize: 0.2,
-              min: 0,
-              max: 1,
+              stepSize: leadsStepSize,
+              min: minLeadsList,
+              max: maxLeadsList,
               padding: 18,
               fontColor:"#6C7383"
             },
@@ -158,7 +184,7 @@
         labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
         datasets: [
           {
-            data: [0.3, 1, 0.7, 0.4, 0.87, 0.35, 0.38],
+            data: [0, 0, 0, 0, 0, 0, 0],
             borderColor: [
               '#D43F8D'
             ],
@@ -168,6 +194,32 @@
           }
         ]
       };
+
+      let usersList = JSON.parse($('#my-data').data().users.replace(/'/g, '"'));
+      let maxUserList = 1;
+      let minUserList = 0;
+      
+      // loop through week days, if there is data available for that day, set it to the value
+      for (let i = 0; i < areaData.labels.length; i++) {
+        let weekDay = areaData.labels[i];
+
+        if (usersList[weekDay] != undefined) {
+          areaData.datasets[0].data[i] = usersList[weekDay];
+
+          if (usersList[weekDay] > maxUserList) {
+            maxUserList = usersList[weekDay];
+          } 
+        }
+      }
+
+      let usersStepSize = maxUserList;
+      // get the highest divisor of the maximum users value
+      for (let i = maxUserList-1; i > 0; i--) {
+        if (maxUserList % i == 0) {
+          usersStepSize = i;
+        }
+      }
+
       var areaOptions = {
         responsive: true,
         maintainAspectRatio: true,
@@ -197,9 +249,9 @@
               display: true,
               autoSkip: false,
               maxRotation: 0,
-              stepSize: 0.2,
-              min: 0,
-              max: 1,
+              stepSize: usersStepSize,
+              min: minUserList,
+              max: maxUserList,
               padding: 18,
               fontColor:"#6C7383"
             },
