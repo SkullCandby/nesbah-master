@@ -17,28 +17,32 @@
         ]
       };
 
-      let leadsList = JSON.parse($('#my-data').data().leads.replace(/'/g, '"'));
       let maxLeadsList = 1;
       let minLeadsList = 0;
-      
-      // loop through week days, if there is data available for that day, set it to the value
-      for (let i = 0; i < areaData.labels.length; i++) {
-        let weekDay = areaData.labels[i];
-
-        if (leadsList[weekDay] != undefined) {
-          areaData.datasets[0].data[i] = leadsList[weekDay];
-
-          if (leadsList[weekDay] > maxLeadsList) {
-            maxLeadsList = leadsList[weekDay];
-          } 
-        }
-      }
-
       let leadsStepSize = maxLeadsList;
-      // get the highest divisor of the maximum users value
-      for (let i = maxLeadsList-1; i > 0; i--) {
-        if (maxLeadsList % i == 0) {
-          leadsStepSize = i;
+
+      if ($('#my-data').data().leads.length != undefined) {
+        let leadsList = JSON.parse($('#my-data').data().leads.replace(/'/g, '"'));
+      
+      
+        // loop through week days, if there is data available for that day, set it to the value
+        for (let i = 0; i < areaData.labels.length; i++) {
+          let weekDay = areaData.labels[i];
+
+          if (leadsList[weekDay] != undefined) {
+            areaData.datasets[0].data[i] = leadsList[weekDay];
+
+            if (leadsList[weekDay] > maxLeadsList) {
+              maxLeadsList = leadsList[weekDay];
+            } 
+          }
+        }
+
+        // get the highest divisor of the maximum users value
+        for (let i = maxLeadsList-1; i > 0; i--) {
+          if (maxLeadsList % i == 0) {
+            leadsStepSize = i;
+          }
         }
       }
 
@@ -195,30 +199,34 @@
         ]
       };
 
-      let usersList = JSON.parse($('#my-data').data().users.replace(/'/g, '"'));
       let maxUserList = 1;
       let minUserList = 0;
-      
-      // loop through week days, if there is data available for that day, set it to the value
-      for (let i = 0; i < areaData.labels.length; i++) {
-        let weekDay = areaData.labels[i];
-
-        if (usersList[weekDay] != undefined) {
-          areaData.datasets[0].data[i] = usersList[weekDay];
-
-          if (usersList[weekDay] > maxUserList) {
-            maxUserList = usersList[weekDay];
-          } 
-        }
-      }
-
       let usersStepSize = maxUserList;
-      // get the highest divisor of the maximum users value
-      for (let i = maxUserList-1; i > 0; i--) {
-        if (maxUserList % i == 0) {
-          usersStepSize = i;
+
+      if ($('#my-data').data().users.length != undefined) {
+        let usersList = JSON.parse($('#my-data').data().users.replace(/'/g, '"'));        
+        
+        // loop through week days, if there is data available for that day, set it to the value
+        for (let i = 0; i < areaData.labels.length; i++) {
+          let weekDay = areaData.labels[i];
+  
+          if (usersList[weekDay] != undefined) {
+            areaData.datasets[0].data[i] = usersList[weekDay];
+  
+            if (usersList[weekDay] > maxUserList) {
+              maxUserList = usersList[weekDay];
+            } 
+          }
+        }
+  
+        // get the highest divisor of the maximum users value
+        for (let i = maxUserList-1; i > 0; i--) {
+          if (maxUserList % i == 0) {
+            usersStepSize = i;
+          }
         }
       }
+      
 
       var areaOptions = {
         responsive: true,
