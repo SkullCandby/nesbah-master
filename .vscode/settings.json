@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/3b3dfd15-97b2-4668-8093-57c582d28ab6/AppServices/subscriptions/3b3dfd15-97b2-4668-8093-57c582d28ab6/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/nesbah-new",
-    "appService.deploySubpath": "."
-}

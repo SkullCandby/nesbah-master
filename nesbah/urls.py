@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
     path('admin_portal/', include('adminPortal.urls')),
+    path('bank/', include('bankPortal.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 #add this to urlpatterns variable
 

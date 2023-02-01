@@ -17,7 +17,9 @@ from pathlib import Path
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
+    ("root", os.path.join(BASE_DIR, "static")),
+    ("bank", os.path.join(BASE_DIR, "bankPortal/static")),
+    ("admin", os.path.join(BASE_DIR, "adminPortal/static")),
 )
 
 
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account',
     'adminPortal',
+    'bankPortal',
 ]
 
 MIDDLEWARE = [

@@ -13,4 +13,7 @@ urlpatterns = [
     path('credit_card/', views.credit, name='credit'),
     path('activate/(?P<uidb64>+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
         views.activate, name='activate'),
+    path('reset/', views.reset, name='reset'),
+    path('resetPassword/(?P<uidb64>+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
+        views.resetPassword, name='resetPassword'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

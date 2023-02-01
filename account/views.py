@@ -13,6 +13,8 @@ from django.utils.encoding import force_bytes, force_str
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from .forms import ResetPassword
+from .models import Permissions
 from .tokens import account_activation_token
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -21,6 +23,7 @@ from kinda_api import past_week_users, past_week_employee
 def index(request):
     context = {}
     user = request.user
+    print(user)
     if user.is_active:
         context = {'name': user.first_name,
                    'name_input': user.first_name}
@@ -61,10 +64,6 @@ def register_page(request):
             # to get the domain of the current site
             current_site = get_current_site(request)
             mail_subject = 'Activation link has been sent to your email id'
-            html = f'''
-            Hi { user.first_name },
-            Please click on the link to confirm your registration,
-            <a href="http://{ current_site }/activate/{urlsafe_base64_encode(force_bytes(user.pk))}/{account_activation_token.make_token(user)}">Please click to confirm</a>'''
             message = render_to_string('activate.html', {
                 'user': user,
                 'domain': current_site.domain,
@@ -92,10 +91,16 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
+
         customer = Customer(user=user)
         customer.email = user.email
         customer.name = user.first_name
         customer.save()
+
+        permission = Permissions(user=user)
+        permission.permission = "employee"
+        permission.save()
+
         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
         return HttpResponse('Activation link is invalid!')
@@ -130,3 +135,53 @@ def whyUs(request):
 def credit(request):
     context = {}
     return render(request, 'credit_card.html', context)
+
+def reset(request):
+    if request.method == "POST":
+        form = GetUserName(request.POST)
+        if form.is_valid():
+            user = User.objects.get(username=form.cleaned_data['username'])
+            current_site = get_current_site(request)
+            mail_subject = 'Reset password link has been sent to your email id'
+            message = render_to_string('reset.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+            })
+            to_email = user.email
+            email = EmailMultiAlternatives(
+                mail_subject, message, to=[to_email]
+            )
+            # email.attach_alternative(html, "text/html")
+            email.send()
+            return HttpResponse('Please check your email to reset the password')
+
+    else:
+        form = GetUserName()
+    context = {"form": form}
+    return render(request, 'forget.html', context)
+def resetPassword(request,  uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if request.method == "POST":
+        form = ResetPassword(request.POST)
+
+        print(form)
+        if form.is_valid():
+            print(form.cleaned_data['password1'])
+            print(form.cleaned_data['password2'])
+            if form.cleaned_data['password1'] == form.cleaned_data['password2']:
+                user.set_password(form.cleaned_data['password1'])
+                user.save()
+                return redirect('/account/login/')
+        else:
+            messages.info(request, 'Passwords are different')
+    else:
+        form = ResetPassword()
+    context = {'form': form}
+    return render(request, 'resetPassword.html', context)
+
