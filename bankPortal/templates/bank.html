@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta id="my-data" data-leads="{{leads}}">
+  <title>Nisbah Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script>
+    var leads = $('#my-data').data().leads;
+    console.log(leads);
+  </script>
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.1/datatables.min.css"/>
+  <!-- <link rel="stylesheet" href="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}"> -->
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <!-- <link rel="stylesheet" type="{% static 'text/css" href="js/select.dataTables.min.css' %}"> -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
+  <link rel="stylesheet" href="{% static 'bank/css/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+</head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <!-- <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="images/logo.png" class="mr-2" alt="logo"/></a> -->
+        <a class="navbar-brand" href="index.html"><img src="{% static 'images/logo.png' %}" width="100%" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              <img src="{% static 'images/faces/face28.jpg' %}" alt="profile"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <p class="d-flex flex-column text-center pt-2">
+                <span class="font-weight-bold">Dewa Raka</span>
+                <span><small class="text-muted">Admin</small></span>
+              </p>
+              <hr>
+              <a class="dropdown-item">
+                <i class="ti-user text-primary"></i>
+                My Account
+              </a>
+              <a class="dropdown-item">
+                <i class="ti-settings text-primary"></i>
+                Change Password
+              </a>
+              <a class="dropdown-item">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="history.html">
+              <i class="menu-icon ti-time"></i>
+              <span class="menu-title">History</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="bank.html">
+              <i class="menu-icon ti-package"></i>
+              <span class="menu-title">Leads</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 stretch-card grid-margin">
+              <div class="card" style="max-height:350px">
+                  <div class="card-body text-dark">
+                    <p class="card-title">Filter</p>
+                    <div class="dropdown">
+                      <label>Company Revenue</label><br>
+                      <select class="form-select rounded border-secondary px-2" id="company-revenue-filter" aria-label="Default select example">
+                        <option value="1" selected>No Filter</option>
+                        <option value="2" >&lt; SAR 1M</option>
+                        <option value="3">SAR 1M - SAR 10M</option>
+                        <option value="4">SAR 10M - SAR 50M</option>
+                        <option value="5">> SAR 50M</option>
+                      </select>
+                    </div>
+                    <div class="dropdown">
+                      <label>No. of Staff</label><br>
+                      <select class="form-select rounded border-secondary px-2" id="no-staff-filter" aria-label="Default select example">
+                        <option value="1" selected>No Filter</option>
+                        <option value="2">&lt; 1.000</option>
+                        <option value="3">1.000 - 5.000</option>
+                        <option value="4">5.000 - 10.000</option>
+                        <option value="5">> 10.000</option>
+                      </select>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="pt-4 pl-4 " >
+                  <h2 class="card-title">New Leads</h2>
+                </div>
+                <div class="card-body">
+                  <div class="col-12">
+                    <div class="table-responsive">
+                      <table id="leads-table" class="display expandable-table" style="width:100%">
+                        <thead>
+                          <tr>
+                            <th>Score</th>
+                            <th>Company Revenue</th>
+                            <th>No. of Staff</th>
+                            <th>Region(s) of Operation</th>
+                            <th>Required Service from Bank</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+           Copyright &copy; <script>document.write(new Date().getFullYear());</script> Nesbah
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- Add Modal -->
+  <div class="modal fade" id="viewcorporate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">View Leads</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12 row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Contact Person</label>
+                    <input class="form-control" type="text" name="Name" placeholder="Enter Contact Person" disabled="disabled">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Mobile Number</label>
+                    <input class="form-control" type="text" name="Mobile" placeholder="Enter Mobile Number" disabled="disabled">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Position</label>
+                    <input class="form-control" type="text" name="Position" placeholder="Enter Position"  disabled="disabled">
+                  </div>
+                </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input class="form-control" type="text" name="Email" placeholder="Enter Email Address"disabled="disabled">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Region(s) of operation</label>
+                  <input class="form-control" type="text" name="Region" placeholder="Enter Region(s) of operation" disabled="disabled">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Required Service from Bank</label>
+                  <input class="form-control" type="text" name="Service" placeholder="Enter Required Service from Bank" disabled="disabled">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Year(s) of Business</label>
+                  <input class="form-control" type="text" name="Years" placeholder="Enter Year(s) of Business" disabled="disabled">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Sector</label>
+                  <input class="form-control" type="text" name="Sector" placeholder="Enter Sector" disabled="disabled">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label>Number of staff</label>
+                <input class="form-control" type="text" name="Staff" placeholder="Enter Number of Staff" disabled="disabled">
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>No. of Saudi Staff</label>
+                  <input class="form-control" type="text" name="SaudiStaff" placeholder="Enter Number of Saudi Staff" disabled="disabled">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Average Staff Salary</label>
+                  <input class="form-control" type="text" name="Salary" placeholder="Enter Average Salary" disabled="disabled">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label>Business legal form</label>
+                <input class="form-control" type="text" name="Form" placeholder="Enter Business Legal Form" disabled="disabled">
+              </div>
+              <div class="col-md-6">
+                <label>Business Capital</label>
+                <input class="form-control" type="text" name="Capital" placeholder="Enter Business Capital" disabled="disabled">
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Number of Branches</label>
+                  <input class="form-control" type="text" name="Branches" placeholder="Enter Number of Branches" disabled="disabled">
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                <label>Website</label>
+                <input type="text" class="form-control" id="inputwebsite" placeholder="Enter Website Url" disabled="disabled">
+              </div>
+              </div>
+              <div class="col-md-12">
+              <div class="form-group">
+                <label>Notes</label>
+                <input type="text" class="form-control" id="inputnotes" placeholder="Enter Notes" disabled="disabled">
+              </div>
+            </div>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</a>
+        <input type="submit" class="btn btn-primary" id="btn-see-full-data" data-application-id="" value="See Full Data">
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- plugins:js -->
+  <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net/jquery.dataTables.js' %}"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.1/datatables.min.js"></script>
+  <!-- <script src="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script> -->
+  <script src="{% static 'js/dataTables.select.min.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'js/template.js' %}"></script>
+  <script src="{% static 'js/settings.js' %}"></script>
+  <script src="{% static 'js/todolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'js/dashboard.js' %}"></script>
+  <script src="{% static 'bank/js/bank.js' %}"></script>
+  <script src="{% static 'js/Chart.roundedBarCharts.js' %}"></script>
+  <script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+        $('#example1').DataTable();
+        $('#example2').DataTable();
+        $('#example3').DataTable();
+        $('#example4').DataTable();
+    });
+  </script>
+  <!-- End custom js for this page-->
+</body>
+
+</html>
