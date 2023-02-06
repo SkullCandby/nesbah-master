@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from account.models import Employee, Customer, Permissions
-from kinda_api import return_employees, return_employee
+from kinda_api import return_employees, return_employee, add_one, unlocked_applications
 import json
 from django.http import JsonResponse
 
@@ -41,15 +41,16 @@ def see_full_data(request):
     if permissions.permission == "admin":
         if request.method == "POST":
             json_data = json.loads(request.body)
-
+            print(json_data)
             """
             TODO:
             Here, save the data that this bank user requested to see full data
             """
-
+            add_one(user, json_data['application_id'])
+            lst = unlocked_applications(user)
+            print(lst)
             return JsonResponse(return_employee(json_data["application_id"]), safe=False)
 
     return redirect("/bank/portal")
 
 
-    

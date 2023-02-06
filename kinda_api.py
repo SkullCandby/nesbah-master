@@ -4,6 +4,8 @@ from account.models import Employee
 
 
 # import pandas as pd
+from bankPortal.models import bank_portal_new
+
 
 def past_week_employee(data):
     one_week_ago = datetime.today() - timedelta(days=7)
@@ -72,3 +74,18 @@ def return_employee(application_id):
             new_arr.append(filtered_rows[i])
 
     return new_arr
+
+def unlocked_applications(user):
+    return bank_portal_new.objects.get(user_id=user.id).unlocked_applications.split()
+
+def add_one(user, id):
+    try:
+        bank = bank_portal_new(user=user)
+        bank.unlocked_applications = str(id)
+        bank.count = 1
+        bank.save()
+    except:
+        bank = bank_portal_new.objects.get(user_id=user.id)
+        bank.unlocked_applications += f' {id}'
+        bank.count += 1
+    bank.save()
