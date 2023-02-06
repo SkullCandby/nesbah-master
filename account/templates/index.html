@@ -7,7 +7,6 @@
     <title>Nisbah | Home</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="description" content="Nisbah">
-    <meta name="author" content="M Arif Mardhavi">
 
     <!-- Favicon -->
     <link href="img/favicon.png" rel="icon">
@@ -64,13 +63,6 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav py-4 py-lg-0">
                 <a href="index.html" class="nav-item nav-link active">Home</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Products</a>
-                    <div class="dropdown-menu shadow-sm m-0">
-                        <a href="{% fixed_deposit" class="dropdown-item">Fixed Deposit</a>
-                        <a href="{% url 'credit' %}" class="dropdown-item">Credit Card</a>
-                    </div>
-                </div>
                 <a href="{% url 'whyUs' %}" class="nav-item nav-link">Why Us?</a>
             </div>
             <div class="h-100 d-lg-inline-flex align-items-center d-none ms-auto">
@@ -88,7 +80,7 @@
                 <div class="col-lg-7">
                     <h1 class=" mb-3 animated slideInDown">Smart Financial Products for your Business</h1>
                     <p class="animated slideInDown">Take care of your business by comparing investment options and selecting the best one there is.</p>
-                    <a href="" class="btn btn-outline-primary px-4 ">Get Started</a>
+                    <a href="{% url 'login' %}" class="btn btn-outline-primary px-4 ">Get Started</a>
                 </div>
                 <div class="col-lg-5 animated fadeIn">
                     <img class="img-fluid animated pulse infinite" style="animation-duration: 3s;" src="{% static 'img/skils.png' %}"

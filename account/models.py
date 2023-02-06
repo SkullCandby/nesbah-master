@@ -47,7 +47,7 @@ class Employee(models.Model):
     number_of_branches = models.CharField(max_length=200, null=True) #
 
     website = models.CharField(max_length=200, null=True) #
-    notes = models.CharField(max_length=200, null=True) #
+    notes = models.TextField(max_length=400, null=True) #
 
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     def __str__(self):

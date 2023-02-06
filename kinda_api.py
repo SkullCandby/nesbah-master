@@ -78,6 +78,14 @@ def return_employee(application_id):
 def unlocked_applications(user):
     return bank_portal_new.objects.get(user_id=user.id).unlocked_applications.split()
 
+def all_unlocked_applications():
+    """
+    Returns list of unlocked applications from any bank user
+    List excludes empty fields in the database
+    """
+    applications = [int(app) for unlocked_apps in bank_portal_new.objects.exclude(unlocked_applications=' ').values_list('unlocked_applications', flat=True) for app in unlocked_apps.split()]
+    return applications
+
 def add_one(user, id):
     try:
         bank = bank_portal_new(user=user)

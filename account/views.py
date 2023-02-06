@@ -44,7 +44,19 @@ def login_page(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')
+                user = request.user
+
+                try:
+                    permissions = Permissions.objects.get(user_id=user.id)
+                    if permissions.permission == "admin":
+                        return redirect("adminportal")
+                    elif permissions.permission == "bankuser":
+                        print("yep")
+                        return redirect("bankportal")
+                    else:
+                        return redirect('home')
+                except:
+                    return redirect('home')
             else:
                 messages.info(request, 'Username or Password is incorrect')
     else:
@@ -52,6 +64,10 @@ def login_page(request):
         return HttpResponse('profile page')
     context = {}
     return render(request, 'login1.html', context)
+
+def logout_user(request):
+    logout(request)
+    return redirect("/account/index/")
 
 def register_page(request):
     if request.method == 'POST':

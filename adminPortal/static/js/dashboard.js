@@ -113,6 +113,8 @@
 
     if ($("#application-status").length) {
 
+      
+
       var doughnutPieData = {
         datasets: [{
           data: [3, 49],
@@ -304,3 +306,22 @@
   
   });
 })(jQuery);
+
+$(".logout").click(function(){
+  // $.ajax({
+  //       type: "POST",
+  //       url: "/bank/see-full-data/",
+  //       contentType: 'application/json; charset=utf-8',
+  //       headers: {
+  //           "X-CSRFToken": getCookie("csrftoken")
+  //       },
+  //       data: JSON.stringify({application_id: id}),
+  //       success: function(response) {
+  //           printData(response[0])
+  //           $("#btn-see-full-data").hide();
+  //           parent = $(`a.btn.btn-outline-primary[data-id='${id}']`).parents("tr");
+  //           console.log(parent);
+  //           datatable.row(parent).remove().draw();
+  //       }
+  //   });
+});

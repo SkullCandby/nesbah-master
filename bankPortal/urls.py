@@ -6,5 +6,5 @@ from django.conf import settings
 urlpatterns = [
     path('portal/', views.main, name='bankportal'),
     path('see-full-data/', views.see_full_data, name='fulldata'),
-    path('history/', views.main, name='history'),
+    path('history/', views.history, name='history'),
 ] + static("/", document_root=settings.STATIC_ROOT)

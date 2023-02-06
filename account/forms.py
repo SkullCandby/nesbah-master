@@ -47,25 +47,27 @@ class EmployeeForm(ModelForm):
         fields = '__all__'
         widgets = {
             'regions': Select(choices=[
-                (1, 'One'),
-                (2, 'Two'),
-                (3, 'Three')
+                (1, 'Eastern'),
+                (2, 'Western'),
+                (3, 'Southern'),
+                (4, 'Northern')
             ]),
             'req_service': Select(choices=[
-                (1, 'One'),
-                (2, 'Two'),
-                (3, 'Three')
+                (1, 'Company Enrollment & Staff Offering'),
+                (2, 'Company Financing Services'),
+                (3, 'Account Opening'),
+                (4, 'Offering Discount to Banking Customers')
             ]),
             'sector': Select(choices=[
-                (1, 'One'),
-                (2, 'Two'),
-                (3, 'Three')
+                (1, 'Private'),
+                (2, 'Government'),
+                (3, 'Semi Government')
             ]),
-            'number_of_stuff': Select(choices=[
-                (1, 'One'),
-                (2, 'Two'),
-                (3, 'Three')
-            ]),
+            # 'number_of_stuff': Select(choices=[
+            #     (1, 'One'),
+            #     (2, 'Two'),
+            #     (3, 'Three')
+            # ]),
             'legal_form': Select(choices=[
                 (1, 'One'),
                 (2, 'Two'),

@@ -6,7 +6,7 @@
   {% load static %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta id="my-data" data-users="{{users}}" data-leads="{{leads}}">
+  <meta id="my-data" data-users="{{users}}" data-leads="{{leads}}" data-leadids="{{leadids}}" data-allunlockedleads="{{allunlockedleads}}">
   <title>Nisbah Admin</title>
   <!-- plugins:css -->
 
@@ -31,6 +31,8 @@
 <script>
   var users = $('#my-data').data().users;
   var leads = $('#my-data').data().leads;
+  var leadids = $('#my-data').data().leadids;
+  var allunlockedleads = $('#my-data').data().allunlockedleads;
   console.log(users);
   console.log(leads);
 </script>
@@ -60,11 +62,11 @@
                 <i class="ti-user text-primary"></i>
                 My Account
               </a>
-              <a class="dropdown-item">
+              <!-- <a class="dropdown-item">
                 <i class="ti-settings text-primary"></i>
                 Change Password
-              </a>
-              <a class="dropdown-item">
+              </a> -->
+              <a href="{% url 'logout' %}" class="dropdown-item logout">
                 <i class="ti-power-off text-primary"></i>
                 Logout
               </a>
@@ -94,7 +96,7 @@
               <span class="menu-title">Leads</span>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="product.html">
               <i class="menu-icon ti-shopping-cart"></i>
               <span class="menu-title">Products</span>
@@ -117,7 +119,7 @@
               <i class="menu-icon ti-file"></i>
               <span class="menu-title">Upload</span>
             </a>
-          </li>
+          </li> -->
         </ul>
       </nav>
       <!-- partial -->

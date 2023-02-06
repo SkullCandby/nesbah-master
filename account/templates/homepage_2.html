@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="images/favicon.png" rel="icon">
-    <title>Nisbah | Welcome</title>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="images/favicon.png" rel="icon">
+  <title>Nisbah | Welcome</title>
 </head>
 <style>
 body{
     background-color:  #2d1f53;
     height: 170vh;
+    background-image: url("{% static 'root/images/login-background.jpg' %}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 .container{
     margin-top: 40px;
@@ -26,12 +31,91 @@ body{
     display: flex;
     flex-direction: column; 
 }
-.form-select {
-    background-image: none;
-    border: none;
+
+:root {
+  --formGap: 0.875rem;
 }
-.form-control {
-    border: none;
+
+input {
+  background-image: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+  background-color: #9777e6;
+  border-color: #9777e6;
+}
+
+.btn-area {
+  margin-left: auto;
+  width: 200px;
+}
+
+form {
+  display: grid;
+  gap: var(--formGap);
+}
+
+form input[type="password"],
+form input[type="text"],
+form input[type="submit"] {
+  inline-size: 100%;
+}
+
+.form__field {
+  display: flex;
+}
+
+.form__input {
+  flex: 1;
+}
+
+/* modules/login.css */
+:root {
+  --loginBorderRadus: 0.25rem;
+
+  --loginInputBackgroundColor: #f1f1f9;
+  --loginInputHoverBackgroundColor: #e5e4f4;
+
+  --loginLabelBackgroundColor: #f1f1f9;
+
+  --loginSubmitBackgroundColor: #9777e6;
+  --loginSubmitColor: #eee;
+  --loginSubmitHoverBackgroundColor: #d44179;
+}
+
+label,
+input[type="text"],
+input[type="password"],
+form input[type="submit"] {
+  border-radius: var(--loginBorderRadus);
+}
+
+label {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+input[type="password"],
+input[type="text"] {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.card-body > div {
+  margin-bottom: 1rem;
+}
+
+#id_notes {
+  border: 1px solid #ced4da;
+  width: 100%;
 }
 
 </style>
@@ -51,15 +135,6 @@ body{
             <li class="nav-item">
               <a class="nav-link active text-dark" aria-current="page" href="role_management.html"><i class="fa fa-thin fa-house"></i></a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Products
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Fixed Deposit</a></li>
-                <li><a class="dropdown-item" href="#">Credit Card</a></li>
-              </ul>
-            </li>
             <li class="nav-item">
               <a class="nav-link text-dark" href="why_us.html">Why Us ?</a>
             </li>
@@ -70,112 +145,120 @@ body{
     </nav>
     <!-- CARD APPLICATION-->
     <form method="post" action="">
-        {% csrf_token %}
-        <div class="container">
-            <div class="card">
-                <div class="card-header">
-                    Contact Details
-                </div>
-                <div class="card-body">
-                    <span class="row g-3">
-                        <div class="col-6">
-                          <label for="inputcp" class="form-label">Contact Person</label>
-                          <span  class="form-control" id="inputcp">{{ form.contact_person }}</span>
-                        </div>
-                        <div class="col-6">
-                            <label for="inputnumber" class="form-label">Mobile Number</label>
-                            <span type="text" class="form-control" id="inputnumber" > {{ form.mobile}}</span>
-                          </div>
-                          <div class="col-6">
-                            <label for="inputposition" class="form-label">Position</label>
-                              <span type="text" class="form-control" id="inputposition" > {{ form.position }} </span>
-                          </div>
-                          <div class="col-6">
-                              <label for="inputEmail4" class="form-label">Email</label>
-                              <span type="email" class="form-control" id="inputEmail4" > {{ form.email }} </span>
-                            </div>
-                      </span>
-                </div>
+      {% csrf_token %}
+      <div class="container">
+          <div class="card">
+              <div class="card-header">
+                  Contact Details
+              </div>
+              <div class="card-body">         
+                <span class="row g-3">
+                  <div class="col-6">
+                    <label for="inputcp" class="form-label">Contact Person</label>
+                    <span class="form-control" id="inputcp"> {{ form.contact_person }}</span>
+                  </div>
+                  <div class="col-6">
+                    <label for="inputnumber" class="form-label">Mobile Number</label>
+                    <span class="form-control" id="inputnumber"> {{ form.mobile}}</span>
+                  </div>
+                  <div class="col-6">
+                    <label for="inputposition" class="form-label">Position</label>
+                    <span class="form-control" id="inputposition"> {{ form.position }} </span>
+                  </div>
+                  <div class="col-6">
+                    <label for="inputEmail4" class="form-label">Email</label>
+                    <span class="form-control" id="inputEmail4"> {{ form.email }} </span>
+                  </div>
+                </span>
+              </div>
+          </div>
+      </div>
+
+      <div class="container">
+        <div class="card">
+          <div class="card-header">Corporate Information</div>
+            <div class="card-body col-md-12 row">
+              <div class="col-6">
+                <label class="form-label">Region(s) of operation</label>
+                <span class="form-dropdown">{{ form.regions }}</span>
+              </div>
+
+              <div class="col-6">
+                <label for="inputservice" class="form-label">Required service from bank </label>
+                <span class="form-dropdown">{{ form.req_service }}</span>   
+              </div>
+
+              <div class="col-6">
+                <label class="form-label">Year(s) of business</label>
+                <span class="form-control">{{ form.years }}</span>   
+              </div>
+
+              <div class="col-6">
+                <label class="form-label">Sector</label>
+                <span class="form-dropdown">{{ form.sector }}</span>
+              </div>
+
+              <div class="col-6">
+                <label class="form-label">Number of Staff</label>
+                <span class="form-control">{{ form.number_of_stuff }}</span>
+              </div>
+
+              <div class="col-6">
+                  <label class="form-label">No. of Saudi Staff</label>
+                  <span class="form-control">{{ form.saudi_stuff }}</span>
+              </div>
+
+              <div class="col-6">
+                <label class="form-label">Average Staff Salary</label>
+                <span class="form-control">{{ form.avg_salary }}</span>
+              </div>
+
+              <div class="col-6">
+                <label for="inputbusiness" class="form-label">Business legal form</label>
+                  <span class="form-dropdown">{{ form.legal_form }}</span>
+              </div>
+
+              <div class="col-6">
+                <label for="inputbusinesscapital" class="form-label">Business Capital</label>
+                  <span class="form-dropdown">{{ form.business_cap }}</span>
+              </div>
+
+              <div class="col-6">
+                <label for="inputbranches" class="form-label">Number of Branches</label>
+                  <span type="text" class="form-control" id="inputbranches"> {{ form.number_of_branches }} </span>
+              </div>
+
+              <div class="col-12">
+                <label for="inputwebsite" class="form-label">Website</label>
+                <span type="text" class="form-control" id="inputwebsite"> {{ form.website }} </span>
+              </div>
+
+              <div class="col-12">
+                <label for="inputnotes" class="form-label" style="border-color: white">Notes</label>
+                <span type="text" class="form-dropdown" id="inputnotes">{{ form.notes }}</span>
+              </div>
+
+              <div class="d-grid gap-2 col-6 btn-area">
+                <input type="submit" class="btn btn-primary btn-md" value="Submit Application">
               </div>
             </div>
-
-
-            <div class="container">
-                <div class="card">
-                    <div class="card-header">
-                        Corporate Information
-                    </div>
-                    <div class="card-body">
-                            <div class="col-6">
-                              <label class="form-label">Region(s) of operation</label>
-                              <span class="form-select" aria-label="Default select example">
-                                {{ form.regions }}
-                              </span>
-                            </div>
-                            <div class="col-6">
-                                <label for="inputservice" class="form-label">Required service from bank </label>
-                                <span class="form-select" aria-label="Default select example">
-                                    {{ form.req_service }}
-                                  </span>
-                              </div>
-                              <div class="col-6">
-                                  <label class="form-label">Year(s) of business</label>
-                                  {{ form.years }}
-                              </div>
-                              <div class="col-6">
-                                <label class="form-label">Sector</label>
-                                <span class="form-select" aria-label="Default select example">
-                                    {{ form.sector }}
-                                  </span>
-                              </div>
-                              <div class="col-6">
-                                <label class="form-label">Number of staff</label>
-                                <span class="form-select" aria-label="Default select example">
-                                    <span class="form-select" aria-label="Default select example">
-                                        {{ form.number_of_stuff }}
-                                    </span>
-                                </span>
-                              </div>
-                              <div class="col-6">
-                                  <label class="form-label">No. Of Saudi Staff</label>
-                                  <span>
-                                    {{ form.saudi_stuff }}
-                                  </span>
-                              </div>
-                              <div class="col-6">
-                                <label class="form-label">Average staff salary</label>
-                                  {{ form.avg_salary }}
-                              </div>
-                              <div class="col-6">
-                                <label for="inputbusiness" class="form-label">Business legal form</label>
-                                  <span class="form-select" aria-label="Default select example">
-                                    {{ form.legal_form }}
-                                </span>
-                              </div>
-                              <div class="col-6">
-                                <label for="inputbusinesscapital" class="form-label">Business Capital</label>
-                                  <span class="form-select" aria-label="Default select example">
-                                    {{ form.business_cap }}
-                                </span>
-                              </div>
-                              <div class="col-6">
-                                <label for="inputbranches" class="form-label">Number of Branches</label>
-                                  <span type="text" class="form-control" id="inputbranches"> {{ form.number_of_branches }} </span>
-                              </div>
-                              <div class="col-12">
-                                <label for="inputwebsite" class="form-label">Website</label>
-                                <span type="text" class="form-control" id="inputwebsite"> {{ form.website }} </span>
-                              </div>
-                              <div class="col-12">
-                                  <label for="inputnotes" class="form-label" style="border-color: white">Notes</label>
-                                  <span type="text" class="form-control" id="inputnotes"> {{ form.notes }} </span>
-                              </div>
-                              <div class="d-grid gap-2 col-6 mx-auto">
-                              <input type="submit" class="btn btn-primary btn-md" style="background-color: #9777e6 ;" value="Submit Application">
-                              </div>
-                    </div>
-                  </div>
-                </div>
+          </div>
+        </div>
     </form>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+  <script>
+    $(document).ready(function() {
+        let dropdowns = document.querySelectorAll(".form-dropdown select");
+        for (let i = 0; i < dropdowns.length; i++) {
+            dropdowns[i].className = "form-select rounded px-2";
+        }
+        
+        $("textarea").attr({"rows": "3", "cols": "15"});
+    })  
+</script>
 </body>
 </html>

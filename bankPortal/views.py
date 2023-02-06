@@ -11,10 +11,11 @@ def main(request):
     permissions = Permissions.objects.get(user_id=user.id)
     print(permissions.permission)
     context = {}
-    if permissions.permission == "admin":
+    if permissions.permission == "bankuser" or permissions.permission == "admin":
         context = {}
         if request.method == "GET":
             leads = return_employees(0, 0)
+            unlocked = unlocked_applications(user)
             hide_fields = ["contact_person", "position", "mobile", "email", "website", "notes"]
 
             for lead in leads:
@@ -28,7 +29,39 @@ def main(request):
             'leads': {'Mon': 4, 'Sun': 1, 'Sat': 2}
             """
             context["leads"] = leads
+            context["unlocked"] = unlocked
         return render(request, 'bank.html', context)
+    else:
+        return redirect("/account/index")
+
+def history(request):
+    user = request.user
+    print(user)
+    permissions = Permissions.objects.get(user_id=user.id)
+    print(permissions.permission)
+    context = {}
+    if permissions.permission == "bankuser" or permissions.permission == "admin":
+        context = {}
+        if request.method == "GET":
+            leads = return_employees(0, 0)
+            unlocked = unlocked_applications(user)
+            leads_to_return = []
+            
+            for lead in leads:
+                if str(lead["id"]) in unlocked:
+                    lead["date_created"] = str(lead["date_created"])
+                    leads_to_return.append(lead)
+                
+            """
+            So both all of the data you receive in this format: 
+            'users': {'Tue': 1} 
+            'leads': {'Mon': 4, 'Sun': 1, 'Sat': 2}
+            """
+            context["leads"] = leads_to_return
+            context["leadsamount"] = len(leads)
+            context["username"] = user
+            context["role"] = permissions.permission
+        return render(request, 'history.html', context)
     else:
         return redirect("/account/index")
 
@@ -38,7 +71,7 @@ def see_full_data(request):
     permissions = Permissions.objects.get(user_id=user.id)
     print(permissions.permission)
     
-    if permissions.permission == "admin":
+    if permissions.permission == "bankuser" or permissions.permission == "admin":
         if request.method == "POST":
             json_data = json.loads(request.body)
             print(json_data)
