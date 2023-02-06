@@ -132,7 +132,7 @@ def employee(request):
         print(form.is_valid())
         if form.is_valid():
             form.save()
-
+            return HttpResponse("success")
     else:
         print(past_week_users(Customer))
         print(past_week_employee(Employee))

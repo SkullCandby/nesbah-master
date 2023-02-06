@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from account.models import Employee, Customer, Permissions
-from kinda_api import return_employees, return_employee, add_one, unlocked_applications
+from kinda_api import return_employees, return_employee, add_one, unlocked_applications, all_bank
 import json
 from django.http import JsonResponse
 
@@ -11,6 +11,7 @@ def main(request):
     permissions = Permissions.objects.get(user_id=user.id)
     print(permissions.permission)
     context = {}
+    print(all_bank())
     if permissions.permission == "bankuser" or permissions.permission == "admin":
         context = {}
         if request.method == "GET":
@@ -39,6 +40,7 @@ def history(request):
     print(user)
     permissions = Permissions.objects.get(user_id=user.id)
     print(permissions.permission)
+
     context = {}
     if permissions.permission == "bankuser" or permissions.permission == "admin":
         context = {}
@@ -82,6 +84,7 @@ def see_full_data(request):
             add_one(user, json_data['application_id'])
             lst = unlocked_applications(user)
             print(lst)
+
             return JsonResponse(return_employee(json_data["application_id"]), safe=False)
 
     return redirect("/bank/portal")

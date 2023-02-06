@@ -1,7 +1,8 @@
 from datetime import datetime, timedelta
 
-from account.models import Employee
+from django.contrib.auth.models import User
 
+from account.models import Employee, Customer
 
 # import pandas as pd
 from bankPortal.models import bank_portal_new
@@ -97,3 +98,5 @@ def add_one(user, id):
         bank.unlocked_applications += f' {id}'
         bank.count += 1
     bank.save()
+def all_bank():
+    return [(User.objects.get(id=int(x["user_id"])).first_name, int(x["user_id"])) for x in bank_portal_new.objects.all().values()]
