@@ -127,16 +127,24 @@ def employee(request):
     form = EmployeeForm()
     context = {'form': form}
     print(request.method)
-    if request.method == "POST":
-        form = EmployeeForm(request.POST)
-        print(form.is_valid())
-        if form.is_valid():
-            form.save()
-            return HttpResponse("success")
+
+    if request.user.is_anonymous == False:
+        if request.method == "POST":
+            form = EmployeeForm(request.POST)
+            print(form.is_valid())
+            if form.is_valid():
+                form.save()
+                return HttpResponse("success", status=200)
+        else:
+            print(past_week_users(Customer))
+            print(past_week_employee(Employee))
+        user = request.user
+        permissions = Permissions.objects.get(user_id=user.id)
+        context["username"] = user
+        context["role"] = permissions.permission
+        return render(request, 'homepage_2.html', context)
     else:
-        print(past_week_users(Customer))
-        print(past_week_employee(Employee))
-    return render(request, 'homepage_2.html', context)
+        return redirect("login")
 
 
 def deposit(request):
