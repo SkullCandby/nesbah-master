@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from account.models import Employee, Customer, Permissions
-from kinda_api import past_week_users, past_week_employee, return_employees, all_unlocked_applications
+from kinda_api import past_week_users, past_week_employee, return_employees, all_unlocked_applications, all_bank
 
 
 # Create your views here.
@@ -27,10 +27,13 @@ def main(request):
             for lead in leads:
                 lead_ids.append(lead["id"])
 
+            context['username'] = user
+            context['role'] = permissions.permission
             context['users'] = users_for_the_week
             context['leads'] = employees_for_the_week
             context['leadids'] = lead_ids
             context['allunlockedleads'] = all_unlocked_applications()
+            context['bankusers'] = all_bank()
 
             print(context)
         return render(request, 'admin-portal.html', context)
@@ -59,6 +62,8 @@ def leads(request):
             'sector': '1', 'saudi_stuff': '1244', 'legal_form': '1', 'number_of_branches': '2', 
             'website': 'weweewewe', 'notes': 'adawdwdad', 'date_created': '2022-12-05 12:20:03.212047+00:00'}]
             """
+            context['username'] = user
+            context['role'] = permissions.permission
             context['leads'] = leads
             print(context)
         return render(request, 'leads.html', context)

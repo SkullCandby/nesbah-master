@@ -113,11 +113,12 @@
 
     if ($("#application-status").length) {
 
-      
+      let opened = allunlockedleads.length;
+      let pending = leadids.length - opened;
 
       var doughnutPieData = {
         datasets: [{
-          data: [3, 49],
+          data: [opened, pending],
           backgroundColor: [
             '#0774F8',
             '#D43F8D'
@@ -146,44 +147,44 @@
       });
     }
 
-    if ($("#no_of_applications").length) {
-      var data = {
-        labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
-        datasets: [
-          {
-            data: [3, 10, 7, 16, 6.8, 11, 8],
-            backgroundColor: 'green',
-            width: 10,
-            label: "Total Application"
-          }
-        ]
-      };
-      var options = {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true,
-              max : 18
-            }
-          }]
-        },
-        legend: {
-          display: false
-        },
-        elements: {
-          point: {
-            radius: 0
-          }
-        }
-      };
-      var barChartCanvas = $("#no_of_applications").get(0).getContext("2d");
-      // This will get the first returned node in the jQuery collection.
-      var barChart = new Chart(barChartCanvas, {
-        type: 'bar',
-        data: data,
-        options: options
-      });
-    }
+    // if ($("#no_of_applications").length) {
+    //   var data = {
+    //     labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+    //     datasets: [
+    //       {
+    //         data: [3, 10, 7, 16, 6.8, 11, 8],
+    //         backgroundColor: 'green',
+    //         width: 10,
+    //         label: "Total Application"
+    //       }
+    //     ]
+    //   };
+    //   var options = {
+    //     scales: {
+    //       yAxes: [{
+    //         ticks: {
+    //           beginAtZero: true,
+    //           max : 18
+    //         }
+    //       }]
+    //     },
+    //     legend: {
+    //       display: false
+    //     },
+    //     elements: {
+    //       point: {
+    //         radius: 0
+    //       }
+    //     }
+    //   };
+    //   var barChartCanvas = $("#no_of_applications").get(0).getContext("2d");
+    //   // This will get the first returned node in the jQuery collection.
+    //   var barChart = new Chart(barChartCanvas, {
+    //     type: 'bar',
+    //     data: data,
+    //     options: options
+    //   });
+    // }
 
     if ($("#user-growth").length) {
       var areaData = {
@@ -307,21 +308,22 @@
   });
 })(jQuery);
 
-$(".logout").click(function(){
-  // $.ajax({
-  //       type: "POST",
-  //       url: "/bank/see-full-data/",
-  //       contentType: 'application/json; charset=utf-8',
-  //       headers: {
-  //           "X-CSRFToken": getCookie("csrftoken")
-  //       },
-  //       data: JSON.stringify({application_id: id}),
-  //       success: function(response) {
-  //           printData(response[0])
-  //           $("#btn-see-full-data").hide();
-  //           parent = $(`a.btn.btn-outline-primary[data-id='${id}']`).parents("tr");
-  //           console.log(parent);
-  //           datatable.row(parent).remove().draw();
-  //       }
-  //   });
+
+let parsedData = {};
+let dataArray = bankusers.slice(1, -1).split(', ');
+
+dataArray.forEach(function(item) {
+    let split = item.split(': ');
+    parsedData[split[0]] = split[1].replace(/['"]+/g, '');
 });
+
+for (let key in parsedData) {
+  document.getElementsByClassName("icon-data-list")[0].innerHTML += 
+  `
+  <li>
+    <div class="d-flex">
+      <p class="text-info mb-1">${parsedData[key]}</p>
+    </div>
+  </li>
+  `
+}

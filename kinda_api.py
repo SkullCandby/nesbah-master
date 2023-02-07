@@ -82,9 +82,9 @@ def unlocked_applications(user):
 def all_unlocked_applications():
     """
     Returns list of unlocked applications from any bank user
-    List excludes empty fields in the database
+    List excludes empty fields and duplicate entries in the database
     """
-    applications = [int(app) for unlocked_apps in bank_portal_new.objects.exclude(unlocked_applications=' ').values_list('unlocked_applications', flat=True) for app in unlocked_apps.split()]
+    applications = list(set([int(app) for unlocked_apps in bank_portal_new.objects.exclude(unlocked_applications=' ').values_list('unlocked_applications', flat=True) for app in unlocked_apps.split()]))
     return applications
 
 def add_one(user, id):
@@ -98,5 +98,8 @@ def add_one(user, id):
         bank.unlocked_applications += f' {id}'
         bank.count += 1
     bank.save()
+
 def all_bank():
-    return [(User.objects.get(id=int(x["user_id"])).first_name, int(x["user_id"])) for x in bank_portal_new.objects.all().values()]
+    return {x["user_id"]: User.objects.get(id=int(x["user_id"])).first_name for x in bank_portal_new.objects.all().values()}
+    #return [(User.objects.get(id=int(x["user_id"])).first_name, int(x["user_id"])) for x in bank_portal_new.objects.all().values()]
+

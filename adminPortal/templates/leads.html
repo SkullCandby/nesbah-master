@@ -35,7 +35,7 @@
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <!-- <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="images/logo.png" class="mr-2" alt="logo"/></a> -->
-        <a class="navbar-brand" href="index.html"><img src="{% static 'root/images/logo.png' %}" width="100%" alt="logo"/></a>
+        <a class="navbar-brand" href="{% url 'adminportal' %}"><img src="{% static 'root/images/logo.png' %}" width="100%" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -48,8 +48,8 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <p class="d-flex flex-column text-center pt-2">
-                <span class="font-weight-bold">Dewa Raka</span>
-                <span><small class="text-muted">Admin</small></span>
+                <span class="font-weight-bold">{{username}}</span>
+                <span><small class="text-muted">{{role}}</small></span>
               </p>
               <hr>
               <a class="dropdown-item">
@@ -60,7 +60,7 @@
                 <i class="ti-settings text-primary"></i>
                 Change Password
               </a> -->
-              <a href="{% url 'logout' %}" class="dropdown-item">
+              <a href="{% url 'logout' %}" class="dropdown-item logout">
                 <i class="ti-power-off text-primary"></i>
                 Logout
               </a>
@@ -79,13 +79,13 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="{% url 'adminportal' %}">
               <i class="menu-icon ti-package"></i>
               <span class="menu-title">Analytics</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="leads.html">
+            <a class="nav-link" href="{% url 'leads' %}">
               <i class="menu-icon ti-bar-chart"></i>
               <span class="menu-title">Leads</span>
             </a>
@@ -278,10 +278,10 @@
   </div>
 
   <!-- plugins:js -->
-  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
-  <script src="vendors/chart.js/Chart.min.js"></script>
+  <script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
   <script src="{% static 'vendors/datatables.net/jquery.dataTables.js' %}"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.1/datatables.min.js"></script>
   <script src="js/dataTables.select.min.js"></script>
@@ -290,16 +290,16 @@
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <!-- End plugin js for this page -->
-  <!-- inject:js -->
-  <script src="js/off-canvas.js"></script>
-  <script src="js/hoverable-collapse.js"></script>
-  <script src="js/template.js"></script>
-  <script src="js/settings.js"></script>
-  <script src="js/todolist.js"></script>
-  <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="{% static 'admin/js/leads.js' %}"></script>
-  <script src="js/Chart.roundedBarCharts.js"></script>
+  
+  <script src="{% static 'root/js/offCanvas.js' %}"></script>
+  <!-- <script src="{% static 'js/hoverableCollapse.js' %}"></script> -->
+  <script src="{% static 'root/js/template.js' %}"></script>
+  <script src="{% static 'root/js/settings.js' %}"></script>
+  <!-- <script src="{% static 'js/todolist.js' %}"></script> -->
+  <!-- endinject -->
+  <!-- Custom js for this page-->
   <!-- End custom js for this page-->
 </body>
 

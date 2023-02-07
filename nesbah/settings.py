@@ -18,6 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 STATICFILES_DIRS = (
     ("root", os.path.join(BASE_DIR, "static")),
+    ("account", os.path.join(BASE_DIR, "account/static")),
     ("bank", os.path.join(BASE_DIR, "bankPortal/static")),
     ("admin", os.path.join(BASE_DIR, "adminPortal/static")),
 )
