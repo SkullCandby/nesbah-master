@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from account.models import Employee, Customer, Permissions
 from kinda_api import return_employees, return_employee, add_one, unlocked_applications, all_bank
 import json
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 
 # Create your views here.
 def main(request):
@@ -88,6 +88,26 @@ def see_full_data(request):
             print(lst)
 
             return JsonResponse(return_employee(json_data["application_id"]), safe=False)
+
+    return redirect("/bank/portal")
+
+def application_viewed(request):
+    user = request.user
+    print(user)
+    permissions = Permissions.objects.get(user_id=user.id)
+    print(permissions.permission)
+    
+    if permissions.permission == "bankuser" or permissions.permission == "admin":
+        if request.method == "POST":
+            json_data = json.loads(request.body)
+            print(json_data)
+            """
+            TODO:
+            Here, save the data that this bank user viewed an application
+            """
+            
+
+            return HttpResponse(status=200)
 
     return redirect("/bank/portal")
 

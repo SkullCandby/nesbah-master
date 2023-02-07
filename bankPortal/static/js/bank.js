@@ -24,8 +24,22 @@ function printData(lead) {
 $("a.btn.btn-outline-primary[data-bs-toggle='modal'][data-bs-target='#viewcorporate']").click(function(){
     let selectedLead = leads.filter(lead => lead["id"].toString() === this.getAttribute("data-id"))[0];  
     printData(selectedLead);
-    console.log(selectedLead["id"]);
+    id = selectedLead["id"]
+    console.log(id);
     document.getElementById("btn-see-full-data").setAttribute("data-application-id", this.getAttribute("data-id"));
+    
+    $.ajax({
+        type: "POST",
+        url: "/bank/view_application/",
+        contentType: 'application/json; charset=utf-8',
+        headers: {
+            "X-CSRFToken": getCookie("csrftoken")
+        },
+        data: JSON.stringify({application_id: id}),
+        success: function() {
+            console.log(`${id} viewed`);
+        }
+    });
 });
 
 $("#company-revenue-filter").on("change", function() {
