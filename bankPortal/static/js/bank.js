@@ -35,7 +35,7 @@ $("a.btn.btn-outline-primary[data-bs-toggle='modal'][data-bs-target='#viewcorpor
         headers: {
             "X-CSRFToken": getCookie("csrftoken")
         },
-        data: JSON.stringify({application_id: id}),
+        data: JSON.stringify({view_application: id}),
         success: function() {
             console.log(`${id} viewed`);
         }

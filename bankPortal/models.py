@@ -10,7 +10,8 @@ class bank_portal_new(models.Model):
         on_delete=models.CASCADE,
         related_name="bank_portal_new"
     )
-    count = models.IntegerField(max_length=200, null=True)
+    count = models.IntegerField(max_length=200, null=True, default=0)
+    count_view = models.IntegerField(max_length=200, null=True, default=0)
     unlocked_applications = models.CharField(max_length=999, null=False)
     def __dir__(self):
         return self.unlocked_applications

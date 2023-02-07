@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from account.models import Employee, Customer, Permissions
-from kinda_api import return_employees, return_employee, add_one, unlocked_applications, all_bank
+from kinda_api import return_employees, return_employee, add_one, unlocked_applications, all_bank, count_view
 import json
 from django.http import JsonResponse, HttpResponse
 
@@ -14,6 +14,8 @@ def main(request):
     print(all_bank())
     if permissions.permission == "bankuser" or permissions.permission == "admin":
         context = {}
+        if request.method == "POST":
+            print(request.POST)
         if request.method == "GET":
             leads = return_employees(0, 0)
             unlocked = unlocked_applications(user)
@@ -91,24 +93,17 @@ def see_full_data(request):
 
     return redirect("/bank/portal")
 
+
 def application_viewed(request):
     user = request.user
-    print(user)
     permissions = Permissions.objects.get(user_id=user.id)
-    print(permissions.permission)
-    
+
     if permissions.permission == "bankuser" or permissions.permission == "admin":
         if request.method == "POST":
             json_data = json.loads(request.body)
             print(json_data)
-            """
-            TODO:
-            Here, save the data that this bank user viewed an application
-            """
-            
-
-            return HttpResponse(status=200)
-
+            if json_data["view_application"] is not None:
+                count_view(request.user)
     return redirect("/bank/portal")
 
 
