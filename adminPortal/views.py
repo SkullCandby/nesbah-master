@@ -62,6 +62,7 @@ def leads(request):
             'sector': '1', 'saudi_stuff': '1244', 'legal_form': '1', 'number_of_branches': '2', 
             'website': 'weweewewe', 'notes': 'adawdwdad', 'date_created': '2022-12-05 12:20:03.212047+00:00'}]
             """
+            print("leads")
             context['username'] = user
             context['role'] = permissions.permission
             context['leads'] = leads

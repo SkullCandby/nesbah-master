@@ -31,6 +31,7 @@ def main(request):
             'users': {'Tue': 1} 
             'leads': {'Mon': 4, 'Sun': 1, 'Sat': 2}
             """
+            print(unlocked)
             context["username"] = user
             context["role"] = permissions.permission
             context["leads"] = leads
@@ -63,6 +64,7 @@ def history(request):
             'users': {'Tue': 1} 
             'leads': {'Mon': 4, 'Sun': 1, 'Sat': 2}
             """
+            print(leads_to_return)
             context["leads"] = leads_to_return
             context["leadsamount"] = len(leads)
             context["username"] = user

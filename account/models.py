@@ -50,6 +50,9 @@ class Employee(models.Model):
     notes = models.TextField(max_length=400, null=True) #
 
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+    count_viewed = models.IntegerField(default=0, null=True)
+    count_paid = models.IntegerField(default=0, null=True)
     def __str__(self):
         return str(self.date_created)
 

@@ -13,9 +13,9 @@ for (let i = 0; i < leads.length; i++) {
     
     document.getElementById("date").textContent = `Date (${Intl.DateTimeFormat().resolvedOptions().timeZone})`;
 
-    console.log(date);
-    let buttonPaid = `<a href="#"><span class="badge bg-success">1</span></a>`;
-    let buttonJustViewed = `<a href="#"><span class="badge bg-warning">1</span></a>`;
+    console.log(leads[i]["count_paid"]);
+    let buttonPaid = `<a href="#"><span class="badge bg-success">${leads[i]["count_paid"]}</span></a>`;
+    let buttonJustViewed = `<a href="#"><span class="badge bg-warning">${leads[i]["count_viewed"]}</span></a>`;
     let buttonNotSeen = `<a href="#"><span class="badge bg-primary">0</span></a>`;
     let buttonViewMore = `<a href="#" class="btn btn-outline-primary" data-id="${leads[i]["id"]}" data-bs-toggle="modal" data-bs-target="#viewcorporate">View More</a>`;
     datatable.row.add([leads[i]["user_id"], date,  leads[i]["sector"], "Not available yet", buttonPaid, buttonJustViewed, buttonNotSeen, buttonViewMore]).draw(false);
