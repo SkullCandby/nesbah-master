@@ -771,7 +771,7 @@ p {
               <a class="nav-link text-dark" href="why_us.html">Why Us ?</a>
             </li>
           </ul>
-            <a class="btn btn-outline-primary shadow px-3" href="{% url 'login' %}" class="ml-2">{{ name }}</a>
+            <a class="btn btn-outline-primary shadow px-3" href="{% url 'logout' %}" class="ml-2">Logout {{ name }}</a>
         </div>
       </div>
     </nav>
@@ -781,7 +781,7 @@ p {
         </p>
             <div id="namer">
             <div id="namer-input">
-                 <input type="text" name="namername" placeholder="Enter your company name" value="{{ name_input }}">
+              <input type="text" name="namername" placeholder="Enter your company name" value="{{ name_input }}" disabled>
             </div>   
             </div>
         <p style="padding-top: 80px ; font-size: 15px;"><a href=""> How it works? </a></p>
