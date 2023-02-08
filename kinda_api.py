@@ -103,7 +103,12 @@ def all_bank():
     return {x["user_id"]: User.objects.get(id=int(x["user_id"])).first_name for x in bank_portal_new.objects.all().values()}
     #return [(User.objects.get(id=int(x["user_id"])).first_name, int(x["user_id"])) for x in bank_portal_new.objects.all().values()]
 
-def count_view(user):
+def count_view(user, id):
     bank = bank_portal_new.objects.get(user_id=user.id)
-    bank.count_view += 1
+    if str(id) not in bank.viewed_applications.split():
+        bank.viewed_applications += f' {id}'
+        bank.count_view += 1
     bank.save()
+def leads_all():
+    bank = bank_portal_new.objects.all().values()
+    lst = []

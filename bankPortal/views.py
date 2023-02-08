@@ -103,7 +103,7 @@ def application_viewed(request):
             json_data = json.loads(request.body)
             print(json_data)
             if json_data["view_application"] is not None:
-                count_view(request.user)
+                count_view(request.user, int(json_data["view_application"]))
     return redirect("/bank/portal")
 
 
