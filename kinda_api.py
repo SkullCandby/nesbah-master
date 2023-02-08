@@ -64,7 +64,6 @@ def return_employees(min_stuff, min_avg_salary):
                 blured_arr.append(filtered_rows[i])
         except:
             print(filtered_rows[i]['avg_salary'], filtered_rows[i]['saudi_stuff'])
-    print(new_arr)
     return new_arr
 
 def return_employee(application_id):
@@ -86,25 +85,18 @@ def all_unlocked_applications():
     List excludes empty fields and duplicate entries in the database
     """
     applications = list(set([int(app) for unlocked_apps in bank_portal_new.objects.exclude(unlocked_applications=' ').values_list('unlocked_applications', flat=True) for app in unlocked_apps.split()]))
-    print(applications, 'applications')
     return applications
 
 def add_one(user, id):
-    employee = Employee.objects.get(id=id)
     bank = bank_portal_new.objects.get(user_id=user.id)
-    try:
-        bank.unlocked_applications = str(id)
-        bank.count = 1
-        employee.count_paid += 1
-        bank.save()
-    except:
+    employee = Employee.objects.get(id=id)
+    if str(id) not in bank.unlocked_applications.split():
         bank.unlocked_applications += f' {id}'
-        employee.count_paid += 1
         bank.count += 1
-    bank.save()
-    print(employee.count_paid, 'count_paid')
+        employee.count_paid += 1
     employee.save()
-    print(employee.count_paid, 'count_paid')
+    print(employee.count_paid, 'count_view')
+    bank.save()
 
 def all_bank():
     return {x["user_id"]: User.objects.get(id=int(x["user_id"])).first_name for x in bank_portal_new.objects.all().values()}
@@ -116,8 +108,8 @@ def count_view(user, id):
     if str(id) not in bank.viewed_applications.split():
         bank.viewed_applications += f' {id}'
         bank.count_view += 1
-    employee.count_viewed += 1
-    print(employee.count_viewed, 'count_view')
+        employee.count_viewed += 1
+        print(employee.count_viewed, 'count_view')
     employee.save()
     print(employee.count_viewed, 'count_view')
     bank.save()
