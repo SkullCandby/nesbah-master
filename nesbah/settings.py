@@ -31,7 +31,7 @@ STATICFILES_DIRS = (
 SECRET_KEY = 'django-insecure-m5rt%9s)9*nl%2co#34flw&g^r4t0u3-3=y9q^y&_xpk!@vx1q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['nesbah-site.azurewebsites.net', '127.0.0.1']
 

@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from nesbah import views
 
 urlpatterns = [
+    path('', views.main, name='home'),
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
     path('admin_portal/', include('adminPortal.urls')),
