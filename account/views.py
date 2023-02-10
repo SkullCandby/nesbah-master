@@ -19,7 +19,7 @@ from .tokens import account_activation_token
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 from datetime import datetime, timedelta
-from kinda_api import past_week_users, past_week_employee
+from kinda_api import past_week_users, past_week_employee, return_employee
 def index(request):
     context = {}
     user = request.user
@@ -146,6 +146,9 @@ def employee(request):
         user = request.user
         # permissions = Permissions.objects.get(user_id=user.id)
         context["username"] = user
+        lead = return_employee(user_id=str(user.id))[0]
+        lead["date_created"] = str(lead["date_created"])
+        context["lead"] = lead
         # context["role"] = permissions.permission
         return render(request, 'homepage_2.html', context)
     else:

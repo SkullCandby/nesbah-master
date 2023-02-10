@@ -40,9 +40,10 @@ for (let i = 0; i < leads.length; i++) {
     document.getElementById("date").textContent = `Date (${Intl.DateTimeFormat().resolvedOptions().timeZone})`;
 
     let not_seen = leads.length - leads[i]["count_viewed"];
+    let viewed = leads[i]["count_viewed"] - leads[i]["count_paid"];
 
     let buttonPaid = `<a href="#"><span class="badge bg-success">${leads[i]["count_paid"]}</span></a>`;
-    let buttonJustViewed = `<a href="#"><span class="badge bg-warning">${leads[i]["count_viewed"]}</span></a>`;
+    let buttonJustViewed = `<a href="#"><span class="badge bg-warning">${viewed}</span></a>`;
     let buttonNotSeen = `<a href="#"><span class="badge" style="background-color: #b02a37;">${not_seen}</span></a>`;
     let buttonViewMore = `<a href="#" class="btn btn-outline-primary" data-id="${leads[i]["id"]}" data-bs-toggle="modal" data-bs-target="#viewcorporate">View More</a>`;
 

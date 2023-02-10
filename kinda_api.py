@@ -66,13 +66,18 @@ def return_employees(min_stuff, min_avg_salary):
             print(filtered_rows[i]['avg_salary'], filtered_rows[i]['saudi_stuff'])
     return new_arr
 
-def return_employee(application_id):
+def return_employee(*application_id, **user_id):
     filtered_rows = list(Employee.objects.all().values())
     new_arr = []
-
-    for i in range(len(filtered_rows)):
-        if str(filtered_rows[i]['id']) == application_id:
-            new_arr.append(filtered_rows[i])
+    if user_id:
+        for i in range(len(filtered_rows)):
+            if str(filtered_rows[i]['user_id']) == user_id["user_id"]:
+                new_arr.append(filtered_rows[i])
+    else:
+        print("applicationid")
+        for i in range(len(filtered_rows)):
+            if str(filtered_rows[i]['id']) == application_id[0]:
+                new_arr.append(filtered_rows[i])
 
     return new_arr
 
