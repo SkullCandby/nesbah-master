@@ -92,7 +92,8 @@ def register_page(request):
             )
             # email.attach_alternative(html, "text/html")
             email.send()
-            return HttpResponse('Please confirm your email address to complete the registration')
+            return HttpResponse("success", status=200)
+            # return HttpResponse('Please confirm your email address to complete the registration')
     else:
         form = CreateUserForm()
     return render(request, 'register1.html', {'form': form})
@@ -113,7 +114,7 @@ def activate(request, uidb64, token):
         customer.name = user.first_name
         customer.save()
 
-        permission = Permissions(user=user)
+        permission = Permissions(user_id=user.id)
         permission.permission = "employee"
         permission.save()
 
@@ -127,10 +128,14 @@ def employee(request):
     form = EmployeeForm()
     context = {'form': form}
     print(request.method)
-
+    
     if request.user.is_anonymous == False:
         if request.method == "POST":
-            form = EmployeeForm(request.POST)
+            data = request.POST.copy()
+            data['user_id'] = request.user.id
+            data['company_name'] = request.user.first_name
+            print(data)
+            form = EmployeeForm(data)
             print(form.is_valid())
             if form.is_valid():
                 form.save()
@@ -139,9 +144,9 @@ def employee(request):
             print(past_week_users(Customer))
             print(past_week_employee(Employee))
         user = request.user
-        permissions = Permissions.objects.get(user_id=user.id)
+        # permissions = Permissions.objects.get(user_id=user.id)
         context["username"] = user
-        context["role"] = permissions.permission
+        # context["role"] = permissions.permission
         return render(request, 'homepage_2.html', context)
     else:
         return redirect("login")

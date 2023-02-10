@@ -188,7 +188,7 @@
 
     if ($("#user-growth").length) {
       var areaData = {
-        labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+        labels: ["Mon","Tue","Wed","Thur","Fri","Sat","Sun"],
         datasets: [
           {
             data: [0, 0, 0, 0, 0, 0, 0],

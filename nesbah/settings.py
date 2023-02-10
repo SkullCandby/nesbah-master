@@ -31,7 +31,7 @@ STATICFILES_DIRS = (
 SECRET_KEY = 'django-insecure-m5rt%9s)9*nl%2co#34flw&g^r4t0u3-3=y9q^y&_xpk!@vx1q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['nesbah-site.azurewebsites.net', '127.0.0.1']
 
@@ -128,6 +128,14 @@ USE_I18N = True
 USE_TZ = True
 
 EMAIL_USE_TLS = True
+# EMAIL_HOST = os.getenv("APP_EMAIL_HOST", "smtp.office365.com")
+# EMAIL_PORT = os.getenv("APP_EMAIL_PORT", 587)
+# EMAIL_HOST_USER = os.getenv("admin@nesbah.net")
+# SERVER_EMAIL = EMAIL_HOST_USER
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# EMAIL_HOST_PASSWORD = os.getenv("Riyadh123!@#")
+# EMAIL_USE_TLS = os.getenv("APP_EMAIL_USE_TLS", True)
+# EMAIL_TIMEOUT = os.getenv("APP_EMAIL_TIMEOUT", 60)
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'gdmeshkov@gmail.com'
 EMAIL_HOST_PASSWORD = 'wbxuhmofubtwagjt'

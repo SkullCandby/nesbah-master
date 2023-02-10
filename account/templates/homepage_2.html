@@ -139,7 +139,7 @@ input[type="text"] {
               <a class="nav-link text-dark" href="{% url 'whyUs' %}">Why Us?</a>
             </li>
           </ul>
-            <a class="btn btn-outline-primary shadow px-3" href="{% url 'logout' %}" class="ml-2">Logout {{username}}</a>
+            <a class="btn btn-outline-primary shadow px-3" href="{% url 'logout' %}" class="ml-2">Logout</a>
         </div>
       </div>
     </nav>
@@ -220,7 +220,7 @@ input[type="text"] {
 
               <div class="col-6">
                 <label for="inputbusinesscapital" class="form-label">Business Capital</label>
-                  <span class="form-dropdown">{{ form.business_cap }}</span>
+                  <span class="form-control">{{ form.business_cap }}</span>
               </div>
 
               <div class="col-6">
@@ -274,6 +274,8 @@ input[type="text"] {
                   'success')
                 }
             };
+            formData.append('count_viewed', 0);
+            formData.append('count_paid', 0);
             xhr.send(formData);
         });
     })  

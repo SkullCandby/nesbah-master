@@ -2,8 +2,39 @@ var datatable = $("#leads-table").DataTable();
 leads = JSON.parse(leads.replaceAll("None", "null").replace(/'/g, '"'));
 //unlocked = JSON.parse(unlocked.replace(/'/g, '"'));
 
+let regions = [
+    "Eastern",
+    "Western",
+    "Southern",
+    "Northern"
+];
+
+let requiredService = [
+    "Company Enrollment & Staff Offering",
+    "Company Financing Services",
+    "Account Opening",
+    "Offering Discount to Banking Customers"
+];
+
+let sector = [
+    "Private",
+    "Government",
+    "Semi Government"
+];
+
+let legalForm = [
+    "Joint Stock Company/Public Traded",
+    "Sole Proprietorship",
+    "Limited and General Partnership"
+]
+
 for (let i = 0; i < leads.length; i++) {
     if (!unlocked.includes(leads[i]["id"].toString())) {
+        leads[i]["regions"] = regions[leads[i]["regions"]];
+        leads[i]["req_service"] = requiredService[leads[i]["req_service"]];
+        leads[i]["sector"] = sector[leads[i]["sector"]];
+        leads[i]["legal_form"] = legalForm[leads[i]["legal_form"]];
+
         datatable.row.add(["0", leads[i]["business_cap"],  leads[i]["number_of_stuff"], leads[i]["regions"], leads[i]["req_service"], 
         `<a href="#" class="btn btn-outline-primary" data-id="${leads[i]["id"]}" data-bs-toggle="modal" data-bs-target="#viewcorporate">View More</a>`
         ]).draw(false);

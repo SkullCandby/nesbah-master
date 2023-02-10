@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta id="my-data" data-leads="{{leads}}">
-  <title>Nisbah Admin</title>
+  <title>Nesbah Admin</title>
   <!-- plugins:css -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
@@ -27,7 +27,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="{% static 'root/images/favicon.png' %}" />
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
 </head>
 <body>
   <div class="container-scroller">
@@ -52,10 +52,10 @@
                 <span><small class="text-muted">{{role}}</small></span>
               </p>
               <hr>
-              <a class="dropdown-item">
+              <!-- <a class="dropdown-item">
                 <i class="ti-user text-primary"></i>
                 My Account
-              </a>
+              </a> -->
               <!-- <a class="dropdown-item">
                 <i class="ti-settings text-primary"></i>
                 Change Password
@@ -84,7 +84,7 @@
               <span class="menu-title">Analytics</span>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="{% url 'leads' %}">
               <i class="menu-icon ti-bar-chart"></i>
               <span class="menu-title">Leads</span>

@@ -22,13 +22,13 @@ class Customer(models.Model):
 
 
 class Employee(models.Model):
-    user = models.OneToOneField(
-        User,
-        null=True,
-        blank=True,
-        on_delete=models.CASCADE,
-        related_name="employee"
-    )
+    # user = models.OneToOneField(
+    #     User,
+    #     null=True,
+    #     blank=True,
+    #     on_delete=models.CASCADE,
+    #     related_name="employee"
+    # )
     contact_person = models.CharField(max_length=200, null=True) #
     position = models.CharField(max_length=200, null=True) #
     mobile = models.CharField(max_length=200, null=True) #
@@ -51,6 +51,8 @@ class Employee(models.Model):
 
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
+    user_id = models.CharField(max_length=200, null=True) #
+    company_name = models.CharField(max_length=200, null=True) #
     count_viewed = models.IntegerField(default=0, null=True)
     count_paid = models.IntegerField(default=0, null=True)
     def __str__(self):

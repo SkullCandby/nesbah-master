@@ -13,6 +13,24 @@
     padding: 0;
     box-sizing: inherit;
 }
+
+.apply-btn {
+  background-color: #EAEAEA;
+  margin-top: 3rem;
+}
+
+.apply-btn:hover {
+  background-color: #ffffff;
+}
+
+.apply-btn a {
+  color: #000;
+}
+
+.welcomepage {
+  background: linear-gradient(225deg, #5f508b 0%, #0f0119 100%);
+}
+
 @media only screen and (min-width: 1024px){
 /* LOGIN PAGE */
 
@@ -52,19 +70,15 @@
 .welcomepage button {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
-    background:#9777e6 ;
     border: 0;
     padding: 15px;
-    color: #FFFFFF;
     font-size: 14px;
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
     cursor: pointer;
     border-radius: 5px;
   }
-.welcomepage button:hover,.welcomepage button:active,.welcomepage button:focus {
-    background: #9777e6;
-  }
+
 #namer {
  position: relative;
 }
@@ -771,21 +785,20 @@ p {
               <a class="nav-link text-dark" href="why_us.html">Why Us ?</a>
             </li>
           </ul>
-            <a class="btn btn-outline-primary shadow px-3" href="{% url 'logout' %}" class="ml-2">Logout {{ name }}</a>
+            <a class="btn btn-outline-primary shadow px-3" href="{% url 'logout' %}" class="ml-2">Logout</a>
         </div>
       </div>
     </nav>
     <div class="welcomepage">
-        <h1>Welcome to Nisbah</h1>
-        <p>Connecting companies to all banks within the kingdom of Saudi Arabia in one click
+        <h1>Welcome to Nesbah</h1>
+        <p>Connecting companies to all banks within the Kingdom of Saudi Arabia in one click
         </p>
             <div id="namer">
-            <div id="namer-input">
-              <input type="text" name="namername" placeholder="Enter your company name" value="{{ name_input }}" disabled>
-            </div>   
+              <div id="namer-input">
+                <input type="text" name="namername" placeholder="Enter your company name" value="{{ name_input }}" disabled>
+              </div>   
             </div>
-        <p style="padding-top: 80px ; font-size: 15px;"><a href=""> How it works? </a></p>
-        <a href="{% url 'employee' %}">Apply Now</a>
+        <button type="button" class="btn btn-primary apply-btn"><a href="{% url 'employee' %}">Apply Now</a></button>
    </div>
 </body>
 </html>

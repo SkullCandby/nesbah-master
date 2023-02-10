@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta id="my-data" data-leads="{{leads}}" data-unlocked="{{unlocked}}">
-  <title>Nisbah Admin</title>
+  <title>Nesbah Admin</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
   <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
@@ -56,10 +56,10 @@
                 <span><small class="text-muted">{{role}}</small></span>
               </p>
               <hr>
-              <a class="dropdown-item">
+              <!-- <a class="dropdown-item">
                 <i class="ti-user text-primary"></i>
                 My Account
-              </a>
+              </a> -->
               <!-- <a class="dropdown-item">
                 <i class="ti-settings text-primary"></i>
                 Change Password
@@ -81,7 +81,7 @@
       <!-- partial -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="/bank/portal/">
                     <i class="menu-icon ti-package"></i>
                     <span class="menu-title">Leads</span>
@@ -229,8 +229,10 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <label>Number of staff</label>
-                <input class="form-control" type="text" name="Staff" placeholder="Enter Number of Staff" disabled="disabled">
+                <div class="form-group">
+                  <label>Number of staff</label>
+                  <input class="form-control" type="text" name="Staff" placeholder="Enter Number of Staff" disabled="disabled">
+                </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
@@ -245,12 +247,16 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <label>Business legal form</label>
-                <input class="form-control" type="text" name="Form" placeholder="Enter Business Legal Form" disabled="disabled">
+                <div class="form-group">
+                  <label>Business legal form</label>
+                  <input class="form-control" type="text" name="Form" placeholder="Enter Business Legal Form" disabled="disabled">
+                </div>
               </div>
               <div class="col-md-6">
-                <label>Business Capital</label>
-                <input class="form-control" type="text" name="Capital" placeholder="Enter Business Capital" disabled="disabled">
+                <div class="form-group">
+                  <label>Business Capital</label>
+                  <input class="form-control" type="text" name="Capital" placeholder="Enter Business Capital" disabled="disabled">
+                </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
@@ -297,7 +303,7 @@
   <!-- End plugin js for this page -->
   <!-- inject:js -->
   <script src="{% static 'js/off-canvas.js' %}"></script>
-  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+  <!-- <script src="{% static 'js/hoverable-collapse.js' %}"></script> -->
   <script src="{% static 'js/template.js' %}"></script>
   <script src="{% static 'js/settings.js' %}"></script>
   <script src="{% static 'js/todolist.js' %}"></script>

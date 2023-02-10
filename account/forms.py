@@ -69,15 +69,15 @@ class EmployeeForm(ModelForm):
             #     (3, 'Three')
             # ]),
             'legal_form': Select(choices=[
-                (1, 'One'),
-                (2, 'Two'),
-                (3, 'Three')
+                (1, 'Joint Stock Company/Public Traded'),
+                (2, 'Sole Proprietorship'),
+                (3, 'Limited and General Partnership')
             ]),
-            'business_cap': Select(choices=[
-                (1, 'One'),
-                (2, 'Two'),
-                (3, 'Three')
-            ]),
+            # 'business_cap': Select(choices=[
+            #     (1, 'One'),
+            #     (2, 'Two'),
+            #     (3, 'Three')
+            # ]),
 
 
         }
